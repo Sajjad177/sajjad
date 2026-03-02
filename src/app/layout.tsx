@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inconsolata, Signika } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 const inconsolata = Inconsolata({
   subsets: ["latin"],
@@ -27,10 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inconsolata.variable} ${signika.variable}`}>
-        <Toaster position="top-center" richColors />
-        {children}
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inconsolata.variable} ${signika.variable}`}
+    >
+      <body className="transition-colors duration-500 bg-neutral-50 text-black dark:bg-neutral-950 dark:text-white">
+        <ThemeProvider>
+          <Toaster position="top-center" richColors />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
