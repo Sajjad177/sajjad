@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inconsolata, Signika } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const inconsolata = Inconsolata({
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inconsolata.variable} ${signika.variable}`}>
+        <Toaster position="top-center" richColors />
         {children}
       </body>
     </html>
