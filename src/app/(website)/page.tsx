@@ -1,12 +1,11 @@
+import AboutUs from '@/components/website/AboutUs';
 import Banner from '@/components/website/Banner/Banner';
-import React from 'react';
 
 const MainPage = () => {
   return (
     <div>
       <Banner />
-      <h1 className="mt-80">Main Page</h1>
-      <h1 className="mt-80">Main Page</h1>
+      <AboutUs />
     </div>
   );
 };

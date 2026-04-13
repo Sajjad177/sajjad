@@ -18,7 +18,7 @@ const Banner = () => {
         {...fadeInUp}
         className="flex items-center gap-2 mb-4 text-zinc-800 dark:text-zinc-200 text-sm sm:text-base md:text-xl font-medium text-center px-4"
       >
-        <span>👋, my name is Sajjad Hossain and I am a</span>
+        <span>👋Hi, my name is Sajjad Hossain and I am a</span>
       </motion.div>
 
       {/* Hero Container */}
@@ -57,7 +57,7 @@ const Banner = () => {
             height={450}
             className="w-full h-auto grayscale"
           />
-          <div className="absolute bottom-0 left-0 w-full h-20 md:h-32 bg-gradient-to-t from-white dark:from-[#050505] to-transparent z-30 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-full h-20 md:h-32 bg-gradient-to-t from-[#f7efe2] dark:from-[#1a1a1a] to-transparent z-30 pointer-events-none" />
         </motion.div>
 
         {/* Bottom Stroke Text */}

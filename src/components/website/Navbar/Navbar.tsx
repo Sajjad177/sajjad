@@ -17,6 +17,50 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Modern View Transitions API for exact Radial/Ripple Effect across screen origins
+  const toggleTheme = (e: React.MouseEvent) => {
+    const isDark = resolvedTheme === "dark";
+    const nextTheme = isDark ? "light" : "dark";
+
+    // Fallback for browsers that don't support the View Transitions API
+    if (!document.startViewTransition) {
+      setTheme(nextTheme);
+      return;
+    }
+
+    // Generate random origin point
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
+    
+    // Calculate distance to the furthest corner to ensure the circle covers the entire screen
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = document.startViewTransition(() => {
+      // Execute the actual React theme switch
+      setTheme(nextTheme);
+    });
+
+    transition.ready.then(() => {
+      // Inject the explicit ripple clipPath expanding from the random point!
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 800,
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)",
+        }
+      );
+    });
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -67,9 +111,7 @@ export default function Navbar() {
               {/* Theme Toggle */}
               <motion.button
                 whileTap={{ scale: 0.85 }}
-                onClick={() =>
-                  setTheme(resolvedTheme === "dark" ? "light" : "dark")
-                }
+                onClick={toggleTheme}
                 className="p-2 rounded-md cursor-pointer dark:hover:bg-neutral-800 transition"
                 aria-label="Toggle Theme"
               >
