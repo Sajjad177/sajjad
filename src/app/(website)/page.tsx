@@ -1,3 +1,4 @@
+import Services from '@/components/Services/Services';
 import AboutUs from '@/components/website/AboutUs';
 import Banner from '@/components/website/Banner/Banner';
 import Experience from '@/components/website/Experience/Experience';
@@ -12,6 +13,7 @@ const MainPage = () => {
       <Skills />
       <Projects />
       <Experience />
+      <Services />
     </div>
   );
 };
