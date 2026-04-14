@@ -1,5 +1,6 @@
 import AboutUs from '@/components/website/AboutUs';
 import Banner from '@/components/website/Banner/Banner';
+import Experience from '@/components/website/Experience/Experience';
 import Projects from '@/components/website/Projects/Projects';
 import Skills from '@/components/website/Skills/Skills';
 
@@ -10,6 +11,7 @@ const MainPage = () => {
       <AboutUs />
       <Skills />
       <Projects />
+      <Experience />
     </div>
   );
 };
