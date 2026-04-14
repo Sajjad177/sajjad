@@ -1,10 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import { ArrowLeft, Box, CheckCircle2, Globe, Lightbulb } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { use } from "react";
 
-// Add specific backend/frontend split to your data map for a "Pro" look
+
 const projectDataMap = {
   "1": {
     title: "Vendo Food Distribution",
@@ -60,15 +60,16 @@ const projectDataMap = {
     impact: ["35% faster order cycles", "Zero overselling incidents", "Real-time stock transparency"]
   },
 };
-
+ 
 const SingleProjectPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const resolvedParams = use(params);
+  const router = useRouter();
   const project = projectDataMap[resolvedParams.id as keyof typeof projectDataMap];
 
   if (!project) return null;
 
   return (
-    <main className="bg-[#f7efe2] dark:bg-[#0a0a0a] min-h-screen transition-colors duration-500 selection:bg-[#235347] selection:text-white pb-32">
+    <main className="bg-[#f7efe2] dark:bg-[#1a1a1a] min-h-screen transition-colors duration-500 selection:bg-[#235347] selection:text-white pb-32">
       
       {/* Top Progress Bar (Visual Detail) */}
       <motion.div 
@@ -79,10 +80,19 @@ const SingleProjectPage = ({ params }: { params: Promise<{ id: string }> }) => {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-12">
         {/* Nav: Minimalist & Flat */}
-        <Link href="/" className="group flex items-center gap-2 text-zinc-500 hover:text-black dark:hover:text-white transition-colors mb-20">
+        <button 
+          onClick={() => {
+            if (window.history.length > 2) {
+              router.back();
+            } else {
+              router.push("/projects");
+            }
+          }} 
+          className="group flex items-center gap-2 text-zinc-500 hover:text-black dark:hover:text-white transition-colors mb-20"
+        >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Gallery Archive</span>
-        </Link>
+        </button>
 
         {/* Header: Dramatic Scale */}
         <header className="mb-20">

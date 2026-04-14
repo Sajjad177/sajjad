@@ -148,13 +148,13 @@ const Projects = () => {
 
         {/* Footer */}
         <div className="mt-20 md:mt-32 pt-10 md:pt-12 flex justify-end">
-          <a
-            href="#"
+          <Link
+            href="/projects"
             className="group flex items-center gap-4 text-black dark:text-white text-xs md:text-sm font-bold uppercase tracking-widest"
           >
             Explore All Work
             <div className="w-10 h-[1px] bg-black dark:bg-white group-hover:w-20 transition-all duration-500" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
