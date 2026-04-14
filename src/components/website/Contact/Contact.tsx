@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, User, Mail, MessageSquareText, Sparkles } from "lucide-react";
 import Lottie from "lottie-react";
 
-const FloatInput = ({ id, label, icon: Icon, type = "text", value, onChange }) => (
+const FloatInput = ({ id, label, icon: Icon, type = "text", value, onChange } : any) => (
   <div className="relative z-0 w-full mb-10 group">
     <Icon className="absolute top-3 left-0 w-5 h-5 text-white/50 transition-colors group-focus-within:text-white" />
     <input
@@ -44,7 +44,7 @@ const Contact = () => {
       .catch(err => console.error("Could not load lottie animation:", err));
   }, []);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e : any) => {
     const { clientX, clientY, currentTarget } = e;
     const { left, top, width, height } = currentTarget.getBoundingClientRect();
     const centerX = left + width / 2;
@@ -53,7 +53,7 @@ const Contact = () => {
     setButtonY((clientY - centerY) * 0.2);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e : any) => {
     e.preventDefault();
     setIsSending(true);
     setTimeout(() => {
@@ -62,10 +62,10 @@ const Contact = () => {
       setForm({ firstName: "", lastName: "", email: "", message: "" });
       setTimeout(() => setIsSent(false), 3000);
     }, 2000);
-  };
+  }; 
 
   return (
-    <section className="bg-[#f7efe2] dark:bg-[#1a1a1a] py-32 px-6 overflow-hidden transition-colors duration-500">
+    <section id="contact" className="bg-[#f7efe2] dark:bg-[#1a1a1a] py-32 px-6 overflow-hidden transition-colors duration-500">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-center">
         
         {/* Left Side: Editorial Content & Image */}
@@ -144,14 +144,14 @@ const Contact = () => {
                   label="First Name" 
                   icon={User} 
                   value={form.firstName} 
-                  onChange={(e) => setForm({...form, firstName: e.target.value})} 
+                  onChange={(e : any) => setForm({...form, firstName: e.target.value})} 
                 />
                 <FloatInput 
                   id="lastName" 
                   label="Last Name" 
                   icon={User} 
                   value={form.lastName} 
-                  onChange={(e) => setForm({...form, lastName: e.target.value})} 
+                  onChange={(e : any) => setForm({...form, lastName: e.target.value})} 
                 />
               </div>
               
@@ -161,7 +161,7 @@ const Contact = () => {
                 type="email" 
                 icon={Mail} 
                 value={form.email} 
-                onChange={(e) => setForm({...form, email: e.target.value})} 
+                onChange={(e : any) => setForm({...form, email: e.target.value})} 
               />
               
               {/* Textarea Component */}

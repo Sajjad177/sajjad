@@ -38,7 +38,7 @@ const Services = () => {
   const [isMarqueeHovered, setIsMarqueeHovered] = useState(false);
 
   return (
-    <section className="bg-[#f7efe2] dark:bg-[#1a1a1a] py-24 px-6 transition-colors duration-500">
+    <section id="services" className="bg-[#f7efe2] dark:bg-[#1a1a1a] py-24 px-6 transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
         
         {/* Header matching Experience section */}

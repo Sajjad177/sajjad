@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin } from "lucide-react";
 import Image from "next/image";
 
 const Banner = () => {
@@ -85,10 +85,21 @@ const Banner = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.8 }}
-          className="flex flex-col gap-1 md:gap-2 text-sm md:text-lg font-medium tracking-wide text-zinc-600 dark:text-zinc-400 text-center md:text-right"
+          className="flex flex-col items-center md:items-end gap-1 md:gap-2 text-sm md:text-lg font-medium tracking-wide text-zinc-600 dark:text-zinc-400 text-center md:text-right"
         >
           <p>Email: sajjadhossainx06@gmail.com</p>
           <p>Phone: 01907488316</p>
+          <div className="flex gap-4 mt-2">
+            {/* Need to add href="#" later with actual link */}
+            <a href="https://www.linkedin.com/in/sajjadsajjad" className="flex items-center gap-2 hover:text-[#235347] dark:hover:text-[#4a8b7a] transition-colors">
+              <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
+
+            </a>
+            <a href="https://github.com/Sajjad177" className="flex items-center gap-2 hover:text-[#235347] dark:hover:text-[#4a8b7a] transition-colors">
+              <Github className="w-4 h-4 md:w-5 md:h-5" />
+
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -1,116 +1,149 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, AnimatePresence, useTransform } from "framer-motion";
+import React, { useState } from "react";
 
 const skillCategories = [
   {
     title: "Frontend",
-    skills: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Redux Toolkit"],
+    skills: [
+      { name: "React.js", img: "https://cdn.worldvectorlogo.com/logos/react-2.svg" },
+      { name: "Next.js", img: "https://cdn.worldvectorlogo.com/logos/next-js.svg" },
+      { name: "TypeScript", img: "https://cdn.worldvectorlogo.com/logos/typescript.svg" },
+      { name: "Tailwind CSS", img: "https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" },
+      { name: "Framer Motion", img: "https://pagepro.co/blog/wp-content/uploads/2020/03/framer-motion.png" },
+      { name: "Redux Toolkit", img: "https://cdn.worldvectorlogo.com/logos/redux.svg" },
+    ],
   },
   {
     title: "Backend",
-    skills: ["Node.js", "Express.js", "MongoDB", "PostgreSQL", "REST APIs", "Authentication"],
+    skills: [
+      { name: "Node.js", img: "https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" },
+      { name: "Express.js", img: "https://adware-technologies.s3.amazonaws.com/uploads/technology/thumbnail/20/express-js.png" },
+      { name: "MongoDB", img: "https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg" },
+      { name: "PostgreSQL", img: "https://cdn.worldvectorlogo.com/logos/postgresql.svg" },
+      { name: "REST APIs", img: "https://cdn-icons-png.flaticon.com/512/603/603201.png" },
+      { name: "Authentication", img: "https://cdn-icons-png.flaticon.com/512/2091/2091584.png" },
+    ],
   },
   {
     title: "Tools",
-    skills: ["Figma", "Git/GitHub", "Render", "Vercel", "Postman"],
+    skills: [
+      { name: "Figma", img: "https://cdn.worldvectorlogo.com/logos/figma-1.svg" },
+      { name: "Git/GitHub", img: "https://cdn.worldvectorlogo.com/logos/github-icon-1.svg" },
+      { name: "Render", img: "https://cdn.worldvectorlogo.com/logos/render-1.svg" },
+      { name: "Vercel", img: "https://cdn.worldvectorlogo.com/logos/vercel.svg" },
+      { name: "Postman", img: "https://cdn.worldvectorlogo.com/logos/postman.svg" },
+    ],
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" as const },
-  },
-};
-
 const Skills = () => {
-  return (
-    <section className="bg-[#f7efe2] dark:bg-[#1a1a1a] py-20 md:py-32 px-4 sm:px-6 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto">
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+  
+  // Mouse tracking
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
+  // Smooth springs
+  const springConfig = { damping: 25, stiffness: 120 };
+  const x = useSpring(mouseX, springConfig);
+  const y = useSpring(mouseY, springConfig);
+
+  // Added: Subtle rotation based on mouse velocity/position
+  const rotate = useTransform(mouseX, [0, 2000], [-15, 15]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+  };
+
+  return (
+    <section 
+      onMouseMove={handleMouseMove}
+      className="relative bg-[#f7efe2] dark:bg-[#1a1a1a] py-20 md:py-32 px-4 sm:px-6 transition-colors duration-300 overflow-hidden"
+    >
+      {/* Floating Image Preview */}
+      <AnimatePresence>
+        {hoveredImage && (
+          <motion.div
+            style={{ 
+              x, 
+              y, 
+              rotate,
+              translateX: "-50%", 
+              translateY: "-50%" 
+            }}
+            initial={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
+            // ADJUSTED: Changed dimensions and added background styling
+            className="fixed top-0 left-0 pointer-events-none z-50 
+                       w-24 h-24 md:w-32 md:h-32 
+                       overflow-hidden rounded-xl 
+                       bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md 
+                       border border-white/20 dark:border-zinc-700/50 
+                       shadow-[0_10px_30px_rgba(0,0,0,0.2)] 
+                       flex items-center justify-center p-4"
+          >
+            <motion.img 
+              key={hoveredImage} // Forces animation when source changes
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              src={hoveredImage} 
+              alt="Skill Preview" 
+              className="w-full h-full object-contain drop-shadow-sm"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20 gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-zinc-400 mb-3">
-              Expertise
-            </h2>
-
+            <h2 className="text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-zinc-400 mb-3">Expertise</h2>
             <p className="text-[clamp(28px,5vw,48px)] font-medium text-black dark:text-white tracking-tight leading-tight">
               A specialized stack for <br />
               <span className="text-[#235347] italic">modern performance.</span>
             </p>
           </div>
-
-          <div className="text-zinc-500 dark:text-zinc-400 text-sm md:text-lg font-medium">
-            MERN Stack Developer
-          </div>
+          <div className="text-zinc-500 dark:text-zinc-400 text-sm md:text-lg font-medium">MERN Stack Developer</div>
         </div>
 
-        {/* Skills Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
-        >
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {skillCategories.map((category, idx) => (
             <motion.div
               key={idx}
-              variants={cardVariants}
-              whileHover={{ y: -6 }}
-              className="group relative rounded-2xl border border-zinc-200 dark:border-zinc-800 cursor-pointer bg-[#235347] dark:bg-zinc-900 p-8 md:p-10 transition-all duration-300 hover:shadow-xl hover:border-transparent"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="group relative rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 p-8 md:p-10 transition-all duration-500 hover:bg-[#235347] bg-[#235347]"
             >
-              {/* Gradient Hover Effect */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-[#235347]/10 to-transparent pointer-events-none" />
-
-              {/* Title */}
-              <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-8">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-white group-hover:text-white/70 mb-8 transition-colors">
                 {category.title}
               </h3>
 
-              {/* Skills */}
               <ul className="space-y-4">
                 {category.skills.map((skill, sIdx) => (
-                  <motion.li
+                  <li
                     key={sIdx}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: sIdx * 0.05 }}
-                    className="flex items-center group/item"
+                    onMouseEnter={() => setHoveredImage(skill.img)}
+                    onMouseLeave={() => setHoveredImage(null)}
+                    className="flex items-center group/item relative z-10 cursor-none"
                   >
-                    {/* Animated Line */}
-                    <span className="w-0 h-[1px] bg-black dark:bg-white mr-0 group-hover/item:w-5  group-hover/item:mr-3 transition-all duration-300"></span>
-
-                    {/* Skill Text */}
-                    <span className="text-base sm:text-lg md:text-xl font-medium text-white cursor-pointer dark:text-zinc-300 dark:group-hover/item:text-white transition">
-                      {skill}
+                    <span className="w-0 h-[1px] bg-white mr-0 group-hover/item:w-5 group-hover/item:mr-3 transition-all duration-300"></span>
+                    <span className="text-base sm:text-lg md:text-xl font-medium  dark:text-zinc-300 text-white transition-colors duration-300">
+                      {skill.name}
                     </span>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Footer Text */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mt-16 text-center text-zinc-500 dark:text-zinc-400 font-medium text-sm md:text-base"
-        >
+        <motion.p className="mt-16 text-center text-zinc-500 dark:text-zinc-400 font-medium text-sm md:text-base">
           Always learning. Always refining.
         </motion.p>
       </div>

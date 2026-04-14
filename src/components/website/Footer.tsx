@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github, Instagram, Linkedin } from "lucide-react";
+import { Github, Instagram, Linkedin } from "lucide-react";
 import { useState } from "react";
 
 const Footer = () => {
@@ -61,17 +61,7 @@ const socialLinks = [
               digital presence?
             </motion.h2>
 
-            <motion.div
-               whileHover={{ x: 10 }}
-               className="inline-flex items-center gap-4 group cursor-pointer"
-            >
-                <div className="w-12 h-12 rounded-full bg-black dark:bg-white flex items-center justify-center text-white dark:text-black transition-transform duration-500 group-hover:rotate-45">
-                    <ArrowUpRight className="w-5 h-5" />
-                </div>
-                <span className="text-lg font-medium border-b border-transparent group-hover:border-black dark:group-hover:border-white transition-all pb-0.5">
-                    Start a conversation
-                </span>
-            </motion.div>
+            
           </div>
         </div>
 

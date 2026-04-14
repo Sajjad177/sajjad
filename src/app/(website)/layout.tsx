@@ -1,6 +1,7 @@
 import Footer from "@/components/website/Footer";
 import Navbar from "@/components/website/Navbar/Navbar";
 import CustomCursor from "@/components/website/CustomCursor";
+import ChatWidget from "@/components/website/ChatWidget";
 import React from "react";
 
 const CommonLayout = ({ children }: { children: React.ReactNode }) => {
@@ -10,6 +11,7 @@ const CommonLayout = ({ children }: { children: React.ReactNode }) => {
       <Navbar />
       <main className="pt-20">{children}</main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 };
