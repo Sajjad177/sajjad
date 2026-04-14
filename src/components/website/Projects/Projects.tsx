@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import React, { useState } from "react";
 
 const projectData = [
   {
@@ -11,7 +12,7 @@ const projectData = [
     year: "2024",
     image:
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop",
-    link: "#",
+    link: "/project/1",
   },
   {
     id: 2,
@@ -20,7 +21,7 @@ const projectData = [
     year: "2024",
     image:
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop",
-    link: "#",
+    link: "/project/2",
   },
   {
     id: 3,
@@ -29,7 +30,7 @@ const projectData = [
     year: "2023",
     image:
       "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
-    link: "#",
+    link: "/project/3",
   },
 ];
 
@@ -91,7 +92,7 @@ const Projects = () => {
               onMouseLeave={() => setActiveImage(null)}
               className="group"
             >
-              <a
+              <Link
                 href={project.link}
                 className="flex flex-col md:flex-row md:items-center justify-between py-10 md:py-16 border-b border-zinc-200 dark:border-zinc-800 transition-all duration-500"
               >
@@ -116,7 +117,7 @@ const Projects = () => {
                     <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 stroke-[1.5px]" />
                   </div>
                 </div>
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>
