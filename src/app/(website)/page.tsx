@@ -5,6 +5,7 @@ import Contact from '@/components/website/Contact/Contact';
 import Experience from '@/components/website/Experience/Experience';
 import Projects from '@/components/website/Projects/Projects';
 import Skills from '@/components/website/Skills/Skills';
+import WorkingProcess from '@/components/website/WorkingProcess';
 
 const MainPage = () => {
   return (
@@ -15,6 +16,7 @@ const MainPage = () => {
       <Projects />
       <Experience />
       <Services />
+      <WorkingProcess />
       <Contact />
     </div>
   );
