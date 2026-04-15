@@ -157,7 +157,7 @@ const Contact = () => {
               
               <FloatInput 
                 id="email" 
-                label="Professional Email" 
+                label="Email" 
                 type="email" 
                 icon={Mail} 
                 value={form.email} 
@@ -180,7 +180,7 @@ const Contact = () => {
                   htmlFor="message"
                   className="absolute text-lg text-white/60 duration-300 transform -translate-y-7 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:pl-10 peer-focus:pl-0 peer-focus:font-medium peer-focus:text-white peer-focus:-translate-y-7 peer-focus:scale-75"
                 >
-                  Project Description
+                  Message
                 </label>
                 <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white origin-left scale-x-0 group-focus-within:scale-x-100 transition-transform duration-500" />
               </div>
@@ -195,7 +195,7 @@ const Contact = () => {
                 <button 
                   type="submit" 
                   disabled={isSending || isSent}
-                  className="relative inline-flex items-center gap-6 py-6 px-12 bg-white hover:bg-zinc-200 text-black font-medium rounded-full overflow-hidden transition-all duration-300 group active:scale-95 disabled:opacity-70 shadow-xl"
+                  className="relative inline-flex items-center gap-6 py-6 px-12 bg-[#ffb02e] hover:bg-[#ffb02e] text-black font-medium rounded-full overflow-hidden transition-all duration-300 group active:scale-95 disabled:opacity-70 shadow-xl"
                 >
                   <AnimatePresence mode="wait">
                     {isSent ? (

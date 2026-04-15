@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const steps = [
@@ -114,9 +114,10 @@ const Connector = ({ index }: { index: number }) => {
 
 export default function WorkingProcess() {
   const containerRef = useRef(null);
+  const [isMarqueeHovered, setIsMarqueeHovered] = useState(false);
 
   return (
-    <section ref={containerRef} className="py-24 overflow-hidden bg-zinc-50/50 dark:bg-transparent">
+    <section ref={containerRef} className="py-24 overflow-hidden bg-[#f7efe2] dark:bg-transparent">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Header */}
@@ -178,7 +179,7 @@ export default function WorkingProcess() {
                     transition={{ type: "spring", delay: 0.2 }}
                     className="absolute left-0 top-6 w-14 flex justify-center md:hidden"
                   >
-                    <div className="w-4 h-4 rounded-full bg-zinc-300 dark:bg-zinc-700 z-10 box-content border-4 border-white dark:border-zinc-950" />
+                    <div className="w-4 h-4 rounded-full bg-[#235347] dark:bg-zinc-700 z-10 box-content border-4 border-white dark:border-zinc-950" />
                   </motion.div>
 
                   <Connector index={index} />
@@ -237,10 +238,83 @@ export default function WorkingProcess() {
                     </div>
                   </motion.div>
                 </div>
+                
               );
             })}
           </div>
         </div>
+      </div>      {/* The Interaction Marquee */}
+      <div
+        className="relative py-10 mt-28 border-y border-zinc-200 dark:border-neutral-800 overflow-hidden cursor-default group"
+        onMouseEnter={() => setIsMarqueeHovered(true)}
+        onMouseLeave={() => setIsMarqueeHovered(false)}
+      >
+        {/* Left Fade */}
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-32 
+          bg-gradient-to-r from-[#f7efe2] to-transparent 
+          dark:from-[#1a1a1a] z-10" />
+
+        {/* Right Fade */}
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-32 
+          bg-gradient-to-l from-[#f7efe2] to-transparent 
+          dark:from-[#1a1a1a] z-10" />
+
+        {/* Marquee */}
+        <motion.div
+          animate={{ x: "-50%" }}
+          transition={{
+            duration: isMarqueeHovered ? 18 : 35,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="flex whitespace-nowrap gap-16 items-center"
+        >
+          {[...Array(8)].map((_, i) => (
+            <h3
+              key={i}
+              className="text-4xl md:text-6xl font-black uppercase tracking-tight 
+              text-transparent [-webkit-text-stroke:1px_black] dark:[-webkit-text-stroke:1px_white]
+              opacity-20 group-hover:opacity-60
+              leading-none 
+              transition-all duration-300"
+            >
+              <span className="relative">
+                PLAN
+
+                {/* Accent underline */}
+                <span className="absolute left-0 bottom-1 w-0 h-[2px] bg-[#235347] dark:bg-[#4a8b7a] group-hover:w-full transition-all duration-500" />
+              </span>
+
+              <span className="mx-6 text-[#235347]/30 dark:text-[#4a8b7a]/30">•</span>
+
+              <span>BUILD</span>
+
+              <span className="mx-6 text-[#235347]/30 dark:text-[#4a8b7a]/30">•</span>
+
+              <span>TEST</span>
+
+              <span className="mx-6 text-[#235347]/30 dark:text-[#4a8b7a]/30">•</span>
+
+              <span>LAUNCH</span>
+
+              <span className="mx-6 text-[#235347]/30 dark:text-[#4a8b7a]/30">•</span>
+
+              <span>GROW</span>
+              
+              <span className="ml-6 text-[#235347]/30 dark:text-[#4a8b7a]/30">•</span>
+            </h3>
+          ))}
+        </motion.div>
+
+        {/* Subtle top highlight line */}
+        <div className="absolute top-0 left-0 w-full h-[1px] 
+          bg-gradient-to-r from-transparent via-[#235347]/20 to-transparent 
+          dark:via-[#4a8b7a]/20" />
+
+        {/* Subtle bottom highlight line */}
+        <div className="absolute bottom-0 left-0 w-full h-[1px] 
+          bg-gradient-to-r from-transparent via-[#235347]/20 to-transparent 
+          dark:via-[#4a8b7a]/20" />
       </div>
     </section>
   );
