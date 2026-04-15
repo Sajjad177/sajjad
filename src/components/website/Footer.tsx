@@ -61,12 +61,40 @@ const socialLinks = [
               digital presence?
             </motion.h2>
 
-            
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-zinc-500 dark:text-zinc-400 max-w-md text-base md:text-lg leading-relaxed mt-6"
+            >
+              I specialize in building premium web applications, scalable architecture, and stunning visual interfaces. Available for freelance opportunities world-wide.
+            </motion.p>
           </div>
+
+          {/* Right Side: Links & Contact Info */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="flex gap-16 md:gap-24"
+          >
+             <div className="flex flex-col gap-6">
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#235347] dark:text-[#4a8b7a]">
+                  Contact info
+                </span>
+                <ul className="space-y-3">
+                  <li><a href="mailto:sajjadhossainx06@gmail.com" className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors">sajjadhossainx06@gmail.com</a></li>
+                  <li><a href="tel:01907488316" className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors">01907488316</a></li>
+                  <li className="text-sm font-medium text-zinc-600 dark:text-zinc-300 pt-2">Dhaka, Bangladesh</li>
+                </ul>
+             </div>
+          </motion.div>
         </div>
 
-
-
+        {/* Separator */}
+        <div className="w-full h-px bg-zinc-200 dark:bg-zinc-800 mb-8" />
         {/* Bottom Bar: Clean Meta Data */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8">
           
