@@ -12,7 +12,6 @@ const Banner = () => {
 
   return (
     <section className="relative min-h-screen w-full flex flex-col items-center pt-24 md:pt-32 pb-10 overflow-hidden bg-[#f7efe2] dark:bg-[#1a1a1a] transition-colors duration-300">
-
       {/* Greeting */}
       <motion.div
         {...fadeInUp}
@@ -23,7 +22,6 @@ const Banner = () => {
 
       {/* Hero Container */}
       <div className="relative flex flex-col items-center w-full max-w-7xl">
-
         {/* Top Text */}
         <motion.h1
           initial={{ opacity: 0, scale: 0.95 }}
@@ -51,11 +49,11 @@ const Banner = () => {
           className="absolute top-[55%] sm:top-[52%] md:top-[48%] w-[200px] sm:w-[260px] md:w-[450px] z-20"
         >
           <Image
-            src="/images/user-2.jpeg"
+            src="/images/sajjad.png"
             alt="Portrait"
             width={450}
             height={450}
-            className="w-full h-auto grayscale"
+            className="w-full h-auto"
           />
           <div className="absolute bottom-0 left-0 w-full h-20 md:h-32 bg-gradient-to-t from-[#f7efe2] dark:from-[#1a1a1a] to-transparent z-30 pointer-events-none" />
         </motion.div>
@@ -73,7 +71,6 @@ const Banner = () => {
 
       {/* Bottom Info */}
       <div className="w-full max-w-7xl flex flex-col md:flex-row justify-between items-center md:items-end mt-[180px] sm:mt-[220px] md:mt-[380px] z-30 px-6 gap-4">
-
         <motion.p
           {...fadeInUp}
           className="text-zinc-500 dark:text-zinc-400 font-medium text-base md:text-lg text-center md:text-left"
@@ -91,13 +88,17 @@ const Banner = () => {
           <p>Phone: 01907488316</p>
           <div className="flex gap-4 mt-2">
             {/* Need to add href="#" later with actual link */}
-            <a href="https://www.linkedin.com/in/sajjadsajjad" className="flex items-center gap-2 hover:text-[#235347] dark:hover:text-[#4a8b7a] transition-colors">
+            <a
+              href="https://www.linkedin.com/in/sajjadsajjad"
+              className="flex items-center gap-2 hover:text-[#235347] dark:hover:text-[#4a8b7a] transition-colors"
+            >
               <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
-
             </a>
-            <a href="https://github.com/Sajjad177" className="flex items-center gap-2 hover:text-[#235347] dark:hover:text-[#4a8b7a] transition-colors">
+            <a
+              href="https://github.com/Sajjad177"
+              className="flex items-center gap-2 hover:text-[#235347] dark:hover:text-[#4a8b7a] transition-colors"
+            >
               <Github className="w-4 h-4 md:w-5 md:h-5" />
-
             </a>
           </div>
         </motion.div>
