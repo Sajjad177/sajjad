@@ -8,7 +8,7 @@ const projectData = [
   {
     id: 1,
     title: "Vendo Food Distribution",
-    category: "B2B Ecommerce • MERN Stack",
+    category: "B2B Ecommerce • Full Stack (Next.js + Node.js)",
     year: "2024",
     image:
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop",

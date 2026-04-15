@@ -59,14 +59,14 @@ const Banner = () => {
         </motion.div>
 
         {/* Bottom Stroke Text */}
-        <motion.h1
+        {/* <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           className="text-[clamp(40px,12vw,160px)] font-black leading-none tracking-tighter text-transparent z-0 mt-[-1rem] md:mt-[-2rem] text-center [-webkit-text-stroke:1px_black] dark:[-webkit-text-stroke:1px_white]"
         >
           & UI, UX Designer
-        </motion.h1>
+        </motion.h1> */}
       </div>
 
       {/* Bottom Info */}
