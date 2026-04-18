@@ -8,7 +8,7 @@ const allProjects = [
     id: "1",
     title: "Vendo Food Distribution",
     category: "B2B Ecommerce",
-    year: "2024",
+    year: "2026",
     image:
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop",
     description:
@@ -16,33 +16,33 @@ const allProjects = [
   },
   {
     id: "2",
-    title: "Uniform Portal & Swag Store",
-    category: "E-commerce APIs",
-    year: "2024",
+    title: "Job Seeker Platform ",
+    category: "Job Platform",
+    year: "2025",
     image:
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop",
     description:
-      "An internal uniform and company swag store utilizing the complete power of Shopify's Storefront API. Included customized role-based access for specific employee spending limits and custom portal UI.",
+      "A comprehensive job-seeking platform designed to connect job seekers with employers. Features include job listings, applications, and user profiles.",
   },
   {
     id: "3",
-    title: "Social Media Feed Engine",
-    category: "Full-stack Platform",
-    year: "2023",
+    title: "Online Appointment Booking ",
+    category: "Appointment Booking",
+    year: "2026",
     image:
       "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
     description:
-      "A highly scalable social feed engine built with Next.js 14. Integrated live real-time notifications, infinite scroll, and a complex relational database schema for users, posts, and comments.",
+      "A comprehensive appointment booking platform designed to connect service providers with customers. Features include appointment scheduling, reminders, and user profiles.",
   },
   {
     id: "4",
-    title: "Global Supply Chain Dashboard",
-    category: "Data Visualization",
-    year: "2023",
+    title: "Course Booking & Management System ",
+    category: "Course Booking",
+    year: "2025",
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
     description:
-      "Real-time analytics dashboard monitoring international supply chain logistics. Engineered with millions of data points mapping transit delays and predictive ETAs.",
+      "A comprehensive course booking and management system designed to connect educators with students. Features include course listings, bookings, and user profiles.",
   },
 ];
 

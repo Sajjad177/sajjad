@@ -9,25 +9,25 @@ const projectData = [
     id: 1,
     title: "Vendo Food Distribution",
     category: "B2B Ecommerce • Full Stack (Next.js + Node.js)",
-    year: "2024",
+    year: "2026",
     image:
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop",
     link: "/project/1",
   },
   {
     id: 2,
-    title: "Uniform Portal & Swag Store",
-    category: "E-commerce • Shopify API",
-    year: "2024",
+    title: "Job Seeker Platform",
+    category: "Job Platform • Full Stack (Next.js + Node.js)",
+    year: "2025",
     image:
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop",
     link: "/project/2",
   },
   {
     id: 3,
-    title: "Social Media Feed Engine",
-    category: "Full-stack • Next.js",
-    year: "2023",
+    title: "Online Appointment Booking System",
+    category: "Booking Platform • Full Stack (Next.js + Node.js)",
+    year: "2026",
     image:
       "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
     link: "/project/3",

@@ -9,55 +9,72 @@ const projectDataMap = {
   "1": {
     title: "Vendo Food Distribution",
     category: "B2B Ecommerce",
-    year: "2024",
+    year: "2026",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop",
     description: "A specialized B2B ecosystem managing high-volume food distribution. Built to solve the friction between supplier inventory and real-time merchant procurement.",
-    role: "Full-Stack Architect",
-    client: "Vendo Food Logistics",
+    role: "Full-Stack Developer",
+    client: "N/A",
     stack: {
-      frontend: ["Next.js", "Tailwind CSS", "Framer Motion", "TanStack Query"],
-      backend: ["Node.js", "MongoDB", "Redis", "BullMQ", "Express"]
+      frontend: ["Next.js", "Tailwind CSS", "TanStack Query", "Zod"],
+      backend: ["Node.js", "MongoDB", "Express", "TypeScript", "JWT", "Mongoose"]
     },
-    liveLink: "#",
-    challenge: "Synchronizing inventory across 14 regional warehouses with sub-second latency while handling 50k+ concurrent SKUs.",
-    solution: "Implemented a Redis-backed caching layer and a message queue system (BullMQ) to decouple heavy distribution logic from the user-facing API.",
+    liveLink: "https://vendofood.com",
+    challenge: "The core challenge was architecting a system that could handle the volatility of food supply chains. We needed to prevent overselling (a critical issue in B2B) while maintaining sub-second response times for thousands of concurrent orders.",
+    solution: "We implemented a hybrid caching strategy using Redis for hot inventory data and a robust message queue (BullMQ) to handle order processing asynchronously. This decoupled the real-time user experience from the heavy database operations required for inventory management.",
     impact: ["35% faster order cycles", "Zero overselling incidents", "Real-time stock transparency"]
   },
 
   "2": {
-    title: "Vendo Food Distribution",
-    category: "B2B Ecommerce",
-    year: "2024",
+    title: "Job Seeker Platform",
+    category: "Job Platform",
+    year: "2025",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop",
-    description: "A specialized B2B ecosystem managing high-volume food distribution. Built to solve the friction between supplier inventory and real-time merchant procurement.",
-    role: "Full-Stack Architect",
-    client: "Vendo Food Logistics",
+    description: "A real-time job recruitment platform with instant notifications, chat messaging, and video interview features powered by Socket.IO and WebRTC.",
+    role: "Backend Developer",
+    client: "N/A",
     stack: {
-      frontend: ["Next.js", "Tailwind CSS", "Framer Motion", "TanStack Query"],
-      backend: ["Node.js", "MongoDB", "Redis", "BullMQ", "Express"]
+      frontend: ["Next.js", "Zod", "Tailwind CSS"],
+      backend: ["Node.js", "Express.js", "TypeScript", "MongoDB", "Mongoose", "Socket.IO", "WebRTC", "JWT", "Nodemailer", "Multer", "Cloudinary", "Stripe", "REST API"]
     },
-    liveLink: "#",
-    challenge: "Synchronizing inventory across 14 regional warehouses with sub-second latency while handling 50k+ concurrent SKUs.",
-    solution: "Implemented a Redis-backed caching layer and a message queue system (BullMQ) to decouple heavy distribution logic from the user-facing API.",
-    impact: ["35% faster order cycles", "Zero overselling incidents", "Real-time stock transparency"]
+    liveLink: "https://evpitch.com",
+    challenge: "Building a complex candidate ranking system and maintaining secure real-time communication protocols for interviews.",
+    solution: "Implemented AI-powered job match scoring to rank candidates, built a secure admin dashboard with role-based access control, and integrated automated email and cloud storage workflows.",
+    impact: ["AI-powered match scoring", "Real-time communication", "Secure subscription handling"]
   },
 
   "3": {
-    title: "Vendo Food Distribution",
-    category: "B2B Ecommerce",
-    year: "2024",
+    title: "Online Appointment Booking System",
+    category: "Booking Platform",
+    year: "2026",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop",
-    description: "A specialized B2B ecosystem managing high-volume food distribution. Built to solve the friction between supplier inventory and real-time merchant procurement.",
-    role: "Full-Stack Architect",
-    client: "Vendo Food Logistics",
+    description: "An online booking system featuring customizable medical forms, calendar integration, and comprehensive automated notifications for patients and staff.",
+    role: "Backend Developer",
+    client: "N/A",
     stack: {
-      frontend: ["Next.js", "Tailwind CSS", "Framer Motion", "TanStack Query"],
-      backend: ["Node.js", "MongoDB", "Redis", "BullMQ", "Express"]
+      frontend: ["React", "Zod", "Tailwind CSS"],
+      backend: ["Node.js", "Express.js", "TypeScript", "MongoDB", "Mongoose", "Socket.IO", "JWT", "Nodemailer", "Multer", "Cloudinary", "Stripe", "REST API"]
     },
-    liveLink: "#",
-    challenge: "Synchronizing inventory across 14 regional warehouses with sub-second latency while handling 50k+ concurrent SKUs.",
-    solution: "Implemented a Redis-backed caching layer and a message queue system (BullMQ) to decouple heavy distribution logic from the user-facing API.",
-    impact: ["35% faster order cycles", "Zero overselling incidents", "Real-time stock transparency"]
+    liveLink: "https://perrystownorthodontics.com",
+    challenge: "Handling sensitive patient data securely while ensuring strict compliance with GDPR and organizing multiple permission levels (patients, admins, staff).",
+    solution: "Developed robust role-based authorization with JWT, implemented SSL-encrypted data storage pipelines, and built a dynamic appointment synchronization system.",
+    impact: ["GDPR Compliant Data Storage", "Automated Email & SMS Alerts", "Secure Multi-tier Auth"]
+  },
+  "4": {
+    title: "Course Booking System",
+    category: "Course Booking",
+    year: "2025",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+    description: "A scalable scuba diving course booking platform equipped with secure online payments, real-time scheduling, and full admin analytics.",
+    role: "Backend Developer",
+    client: "N/A",
+    stack: {
+      frontend: ["React", "Zod", "Tailwind CSS"],
+      backend: ["Node.js", "Express.js", "TypeScript", "MongoDB", "Mongoose", "Socket.IO", "JWT", "Nodemailer", "Multer", "Cloudinary", "Stripe", "REST API"]
+    },
+    liveLink: "https://scubalife.net",
+    challenge: "Overcoming booking conflicts, payment failures, and ensuring seamless communication across all users during high-concurrency availability checks.",
+    solution: "Developed robust automated availability checks, optimized backend stability via heavy refactoring, and built an automated multi-tier notification system.",
+    impact: ["Automated Availability Checks", "Optimized Core Services", "Secure Payment Tracking"]
   },
 };
  
