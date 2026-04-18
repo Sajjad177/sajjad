@@ -1,5 +1,5 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, Box, CheckCircle2, Globe, Lightbulb, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
@@ -272,7 +272,7 @@ const SingleProjectPage = ({ params }: { params: Promise<{ id: string }> }) => {
                 </div>
 
                 {/* Development & DevOps (Added for more professional depth) */}
-                <div className="group">
+                {/* <div className="group">
                   <h4 className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-6 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-current" />
                     Deployment
@@ -280,7 +280,7 @@ const SingleProjectPage = ({ params }: { params: Promise<{ id: string }> }) => {
                   <p className="text-lg font-medium text-black dark:text-white">
                     Vercel / AWS / Docker
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           </aside>
