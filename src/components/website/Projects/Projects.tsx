@@ -2,40 +2,24 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
-
-const projectData = [
-  {
-    id: 1,
-    title: "Vendo Food Distribution",
-    category: "B2B Ecommerce • Full Stack (Next.js + Node.js)",
-    year: "2026",
-    image:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop",
-    link: "/project/1",
-  },
-  {
-    id: 2,
-    title: "Job Seeker Platform",
-    category: "Job Platform • Full Stack (Next.js + Node.js)",
-    year: "2025",
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop",
-    link: "/project/2",
-  },
-  {
-    id: 3,
-    title: "Online Appointment Booking System",
-    category: "Booking Platform • Full Stack (Next.js + Node.js)",
-    year: "2026",
-    image:
-      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
-    link: "/project/3",
-  },
-];
+import React, { useEffect, useState } from "react";
 
 const Projects = () => {
   const [activeImage, setActiveImage] = useState<string | null>(null);
+  const [projectData, setProjectData] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("/data/projects.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const projectsArray = Object.entries(data).map(([id, project]) => ({
+          id,
+          ...(project as any),
+        }));
+        setProjectData(projectsArray.slice(0, 3));
+      })
+      .catch((err) => console.error("Error fetching projects:", err));
+  }, []);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -88,12 +72,12 @@ const Projects = () => {
                 duration: 0.8,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              onMouseEnter={() => setActiveImage(project.image)}
+              onMouseEnter={() => setActiveImage(project.image[0])}
               onMouseLeave={() => setActiveImage(null)}
               className="group"
             >
               <Link
-                href={project.link}
+                href={`/project/${project.id}`}
                 className="flex flex-col md:flex-row md:items-center justify-between py-10 md:py-16 border-b border-zinc-200 dark:border-zinc-800 transition-all duration-500"
               >
                 {/* Left */}
@@ -141,7 +125,7 @@ const Projects = () => {
             <img
               src={activeImage}
               alt="Project preview"
-              className="w-full h-full object-cover grayscale brightness-90 transition-all duration-700"
+              className="w-full h-full object-cover brightness-90 transition-all duration-700"
             />
           )}
         </motion.div>

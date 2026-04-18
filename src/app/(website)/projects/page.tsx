@@ -2,49 +2,7 @@
 import { motion, Variants } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-
-const allProjects = [
-  {
-    id: "1",
-    title: "Vendo Food Distribution",
-    category: "B2B Ecommerce",
-    year: "2026",
-    image:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop",
-    description:
-      "A specialized B2B ecosystem managing high-volume food distribution. Built to solve the friction between supplier inventory and real-time merchant procurement.",
-  },
-  {
-    id: "2",
-    title: "Job Seeker Platform ",
-    category: "Job Platform",
-    year: "2025",
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop",
-    description:
-      "A comprehensive job-seeking platform designed to connect job seekers with employers. Features include job listings, applications, and user profiles.",
-  },
-  {
-    id: "3",
-    title: "Online Appointment Booking ",
-    category: "Appointment Booking",
-    year: "2026",
-    image:
-      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop",
-    description:
-      "A comprehensive appointment booking platform designed to connect service providers with customers. Features include appointment scheduling, reminders, and user profiles.",
-  },
-  {
-    id: "4",
-    title: "Course Booking & Management System ",
-    category: "Course Booking",
-    year: "2025",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
-    description:
-      "A comprehensive course booking and management system designed to connect educators with students. Features include course listings, bookings, and user profiles.",
-  },
-];
+import { useEffect, useState } from "react";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -62,6 +20,21 @@ const itemVariants: Variants = {
 };
 
 const ProjectsPage = () => {
+  const [allProjects, setAllProjects] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch("/data/projects.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const projectsArray = Object.entries(data).map(([id, project]) => ({
+          id,
+          ...(project as any),
+        }));
+        setAllProjects(projectsArray);
+      })
+      .catch((err) => console.error("Error fetching projects:", err));
+  }, []);
+
   return (
     <main className="bg-[#f7efe2] dark:bg-[#1a1a1a] min-h-screen transition-colors duration-500 selection:bg-[#235347] selection:text-white pb-32">
       <div className="max-w-7xl mx-auto px-6 md:px-12 pt-12 md:pt-24">
@@ -106,65 +79,67 @@ const ProjectsPage = () => {
         </header>
 
         {/* Projects Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 md:gap-y-32"
-        >
-          {allProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              variants={itemVariants}
-              className="group cursor-pointer flex flex-col group relative"
-            >
-              {/* Image Container */}
-              <Link href={`/project/${project.id}`} className="relative block overflow-hidden rounded-[2rem] aspect-[4/3] bg-zinc-200 dark:bg-zinc-800 mb-8 border border-zinc-200 dark:border-zinc-800">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 filter grayscale hover:grayscale-0"
-                />
-                
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-[#235347] text-white rounded-full flex items-center justify-center transform scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 ease-out">
-                    <ArrowUpRight className="w-6 h-6" />
+        {allProjects.length > 0 && (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 md:gap-y-32"
+          >
+            {allProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                variants={itemVariants}
+                className="group cursor-pointer flex flex-col group relative"
+              >
+                {/* Image Container */}
+                <Link href={`/project/${project.id}`} className="relative block overflow-hidden rounded-[2rem] aspect-[4/3] bg-zinc-200 dark:bg-zinc-800 mb-8 border border-zinc-200 dark:border-zinc-800">
+                  <img
+                    src={project.image[0]}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  />
+                  
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-[#235347] text-white rounded-full flex items-center justify-center transform scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 ease-out">
+                      <ArrowUpRight className="w-6 h-6" />
+                    </div>
                   </div>
-                </div>
-              </Link>
-              
-              {/* Project Meta */}
-              <div className="flex justify-between items-start">
-                <div>
-                  <div className="flex gap-3 items-center mb-4">
-                    <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-zinc-300 dark:border-zinc-700 rounded-full text-black dark:text-zinc-400">
-                      {project.year}
-                    </span>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#235347] dark:text-[#4a8b7a]">
-                      {project.category}
-                    </span>
+                </Link>
+                
+                {/* Project Meta */}
+                <div className="flex justify-between items-start">
+                  <div>
+                    <div className="flex gap-3 items-center mb-4">
+                      <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-zinc-300 dark:border-zinc-700 rounded-full text-black dark:text-zinc-400">
+                        {project.year}
+                      </span>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-[#235347] dark:text-[#4a8b7a]">
+                        {project.category}
+                      </span>
+                    </div>
+                    
+                    <Link href={`/project/${project.id}`}>
+                      <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-black dark:text-white mb-4 group-hover:italic transition-all">
+                        {project.title}
+                      </h2>
+                    </Link>
+
+                    <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base leading-relaxed line-clamp-2 max-w-md">
+                      {project.description}
+                    </p>
                   </div>
                   
-                  <Link href={`/project/${project.id}`}>
-                    <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-black dark:text-white mb-4 group-hover:italic transition-all">
-                      {project.title}
-                    </h2>
-                  </Link>
-
-                  <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base leading-relaxed line-clamp-2 max-w-md">
-                    {project.description}
-                  </p>
+                  {/* Decorative Index */}
+                  <span className="text-zinc-300 dark:text-zinc-800 text-6xl font-medium tracking-tighter">
+                    {(index + 1).toString().padStart(2, "0")}
+                  </span>
                 </div>
-                
-                {/* Decorative Index */}
-                <span className="text-zinc-300 dark:text-zinc-800 text-6xl font-medium tracking-tighter">
-                  {(index + 1).toString().padStart(2, "0")}
-                </span>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
       </div>
     </main>
   );
