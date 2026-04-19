@@ -28,7 +28,8 @@ const Banner = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="text-[12vw] md:text-[10rem] font-black leading-none tracking-tighter text-black dark:text-white z-10 text-center"
+          style={{ fontFamily: "'Clash Display', sans-serif" }}
+          className="text-[12vw] sm:text-[9vw] md:text-[6.5rem] lg:text-[8rem] whitespace-nowrap font-black leading-none tracking-tighter text-foreground z-10 text-center"
         >
           {personalInfo.title}
         </motion.h1>

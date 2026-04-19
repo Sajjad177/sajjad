@@ -1,11 +1,11 @@
 "use client";
 
+import { navLinks } from "@/config/data";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Star, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { navLinks } from "@/config/data";
 
 export default function Navbar() {
   const { resolvedTheme, setTheme } = useTheme();
