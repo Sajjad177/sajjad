@@ -1,7 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github, Linkedin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { personalInfo, socialLinks } from "@/config/data";
 
 const Banner = () => {
   const fadeInUp = {
@@ -11,13 +12,13 @@ const Banner = () => {
   };
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col items-center pt-24 md:pt-32 pb-10 overflow-hidden bg-[#f7efe2] dark:bg-[#1a1a1a] transition-colors duration-300">
+    <section className="relative min-h-screen w-full flex flex-col items-center pt-24 md:pt-32 pb-10 overflow-hidden bg-background transition-colors duration-300">
       {/* Greeting */}
       <motion.div
         {...fadeInUp}
         className="flex items-center gap-2 mb-4 text-zinc-800 dark:text-zinc-200 text-sm sm:text-base md:text-xl font-medium text-center px-4"
       >
-        <span>👋Hi, my name is Sajjad Hossain and I am a</span>
+        <span>👋Hi, my name is {personalInfo.name} and I am a</span>
       </motion.div>
 
       {/* Hero Container */}
@@ -29,7 +30,7 @@ const Banner = () => {
           transition={{ duration: 0.8 }}
           className="text-[12vw] md:text-[10rem] font-black leading-none tracking-tighter text-black dark:text-white z-10 text-center"
         >
-          Full Stack Developer
+          {personalInfo.title}
         </motion.h1>
 
         {/* Arrow */}
@@ -55,7 +56,7 @@ const Banner = () => {
             height={450}
             className="w-full h-auto"
           />
-          <div className="absolute bottom-0 left-0 w-full h-20 md:h-32 bg-gradient-to-t from-[#f7efe2] dark:from-[#1a1a1a] to-transparent z-30 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-full h-20 md:h-32 bg-gradient-to-t from-background to-transparent z-30 pointer-events-none" />
         </motion.div>
 
         {/* Bottom Stroke Text */}
@@ -75,7 +76,7 @@ const Banner = () => {
           {...fadeInUp}
           className="text-zinc-500 dark:text-zinc-400 font-medium text-base md:text-lg text-center md:text-left"
         >
-          Dhaka, Bangladesh
+          {personalInfo.location}
         </motion.p>
 
         <motion.div
@@ -84,22 +85,18 @@ const Banner = () => {
           transition={{ delay: 0.8 }}
           className="flex flex-col items-center md:items-end gap-1 md:gap-2 text-sm md:text-lg font-medium tracking-wide text-zinc-600 dark:text-zinc-400 text-center md:text-right"
         >
-          <p>Email: sajjadhossainx06@gmail.com</p>
-          <p>Phone: 01907488316</p>
+          <p>Email: {personalInfo.email}</p>
+          <p>Phone: {personalInfo.phone}</p>
           <div className="flex gap-4 mt-2">
-            {/* Need to add href="#" later with actual link */}
-            <a
-              href="https://www.linkedin.com/in/sajjadsajjad"
-              className="flex items-center gap-2 hover:text-[#235347] dark:hover:text-[#4a8b7a] transition-colors"
-            >
-              <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
-            </a>
-            <a
-              href="https://github.com/Sajjad177"
-              className="flex items-center gap-2 hover:text-[#235347] dark:hover:text-[#4a8b7a] transition-colors"
-            >
-              <Github className="w-4 h-4 md:w-5 md:h-5" />
-            </a>
+            {socialLinks.filter(link => link.name !== 'Instagram').map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
+                {link.icon}
+              </a>
+            ))}
           </div>
         </motion.div>
       </div>

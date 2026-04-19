@@ -1,44 +1,30 @@
 "use client";
 import { motion } from "framer-motion";
-import { Cpu, Globe, Layout, Server } from "lucide-react";
+import { Globe, Server } from "lucide-react";
 import { useState } from "react";
 
 const services = [
   {
     id: "01",
-    title: "Web Development",
-    icon: <Layout className="w-8 h-8" />,
-    description: "Developing blazing fast, responsive, and highly interactive web applications tailored to your business needs.",
-    tag: "Interface",
+    title: "Full-Stack Development",
+    icon: <Server className="w-8 h-8" />,
+    description: "Building complete end-to-end platforms, connecting beautiful interfaces with robust and secure backend systems.",
+    tag: "Full-Stack",
   },
   {
     id: "02",
-    title: "Full-Stack Solutions",
-    icon: <Server className="w-8 h-8" />,
-    description: "Building complete end-to-end platforms, connecting beautiful interfaces with robust and secure backend systems.",
-    tag: "Infrastructure",
-  },
-  {
-    id: "03",
-    title: "UI/UX & Product Design",
+    title: "Backend Development",
     icon: <Globe className="w-8 h-8" />,
-    description: "Crafting intuitive user interfaces and experiences focused on user retention, accessibility, and high conversion.",
-    tag: "Design",
-  },
-  {
-    id: "04",
-    title: "Cloud & Deployment",
-    icon: <Cpu className="w-8 h-8" />,
-    description: "Setting up reliable hosting, automated deployment pipelines, and ensuring zero-downtime server operations.",
-    tag: "DevOps",
-  },
+    description: "Building robust, scalable, and secure backend systems tailored to your business needs.",
+    tag: "Backend",
+  }
 ];
 
 const Services = () => {
   const [isMarqueeHovered, setIsMarqueeHovered] = useState(false);
 
   return (
-    <section id="services" className="bg-[#f7efe2] dark:bg-[#1a1a1a] py-24 px-6 transition-colors duration-500">
+    <section id="services" className="bg-background py-24 px-6 transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
         
         {/* Header matching Experience section */}
@@ -50,14 +36,14 @@ const Services = () => {
 
             <h2 className="text-[clamp(40px,8vw,120px)] font-medium tracking-tighter text-black dark:text-white leading-none">
               Services
-              <span className="text-[#235347] dark:text-[#4a8b7a] italic">
+              <span className="text-primary italic">
                 .
               </span>
             </h2>
           </div>
 
           <p className="max-w-[300px] text-zinc-500 dark:text-zinc-400 text-base md:text-lg leading-snug font-light">
-            Delivering end-to-end robust solutions. From fluid interfaces to scalable backends. <span className="text-[#235347] dark:text-[#4a8b7a] font-semibold italic">Let's build something together.</span>
+            Delivering end-to-end robust solutions. From fluid interfaces to scalable backends. <span className="text-primary font-semibold italic">Let's build something together.</span>
           </p>
         </header>
 
@@ -71,16 +57,16 @@ const Services = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className="group relative bg-[#235347] dark:bg-white/5 border border-neutral-200 dark:border-neutral-800/50 rounded-[2rem] p-10 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/20 dark:hover:bg-neutral-800/80 hover:border-neutral-300 dark:hover:border-neutral-700 cursor-pointer"
+              className="group relative bg-primary dark:bg-white/5 border border-neutral-200 dark:border-neutral-800/50 rounded-[2rem] p-10 overflow-hidden transition-all duration-500 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/20 dark:hover:bg-neutral-800/80 hover:border-neutral-300 dark:hover:border-neutral-700 cursor-pointer"
             >
               {/* Subtle background glow on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#235347]/5 dark:from-[#4a8b7a]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
               <div className="relative z-10 flex flex-col h-full justify-between gap-12">
                 
                 {/* Top: Icon & Number */}
                 <div className="flex justify-between items-start">
-                  <div className="w-16 h-16 rounded-2xl bg-[#235347]/10 dark:bg-[#4a8b7a]/20 text-[#235347] dark:text-[#4a8b7a] flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                  <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
                     {service.icon}
                   </div>
                   <span className="text-4xl font-serif italic text-neutral-300 dark:text-neutral-700 transition-colors duration-500">
@@ -120,13 +106,11 @@ const Services = () => {
 >
   {/* Left Fade */}
   <div className="pointer-events-none absolute left-0 top-0 h-full w-32 
-    bg-gradient-to-r from-[#f7efe2] to-transparent 
-    dark:from-[#1a1a1a] z-10" />
+    bg-gradient-to-r from-background to-transparent z-10" />
 
   {/* Right Fade */}
   <div className="pointer-events-none absolute right-0 top-0 h-full w-32 
-    bg-gradient-to-l from-[#f7efe2] to-transparent 
-    dark:from-[#1a1a1a] z-10" />
+    bg-gradient-to-l from-background to-transparent z-10" />
 
   {/* Marquee */}
   <motion.div
@@ -151,14 +135,14 @@ const Services = () => {
           Available for Work
 
           {/* Accent underline */}
-          <span className="absolute left-0 bottom-1 w-0 h-[2px] bg-[#235347] dark:bg-[#4a8b7a] group-hover:w-full transition-all duration-500" />
+          <span className="absolute left-0 bottom-1 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-500" />
         </span>
 
-        <span className="mx-6 text-[#235347]/30 dark:text-[#4a8b7a]/30">•</span>
+        <span className="mx-6 text-primary/30">•</span>
 
         <span>New Projects</span>
 
-        <span className="mx-6 text-[#235347]/30 dark:text-[#4a8b7a]/30">•</span>
+        <span className="mx-6 text-primary/30">•</span>
 
         <span>Let's Collaborate</span>
       </h3>
@@ -167,13 +151,11 @@ const Services = () => {
 
   {/* Subtle top highlight line */}
   <div className="absolute top-0 left-0 w-full h-[1px] 
-    bg-gradient-to-r from-transparent via-[#235347]/20 to-transparent 
-    dark:via-[#4a8b7a]/20" />
+    bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
   {/* Subtle bottom highlight line */}
   <div className="absolute bottom-0 left-0 w-full h-[1px] 
-    bg-gradient-to-r from-transparent via-[#235347]/20 to-transparent 
-    dark:via-[#4a8b7a]/20" />
+    bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 </div>
     </section>
   );

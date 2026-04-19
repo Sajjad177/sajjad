@@ -1,35 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
-import { Github, Instagram, Linkedin } from "lucide-react";
 import { useState } from "react";
+import { personalInfo, socialLinks } from "@/config/data";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [isMarqueeHovered, setIsMarqueeHovered] = useState(false);
 
-const socialLinks = [
-  {
-    name: "LinkedIn",
-    href: "#",
-    icon: <Linkedin className="w-4 h-4" />,
-    color: "hover:bg-[#0A66C2]/10 hover:text-[#0A66C2]",
-  },
-  {
-    name: "GitHub",
-    href: "#",
-    icon: <Github className="w-4 h-4" />,
-    color: "hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:hover:text-white",
-  },
-  {
-    name: "Instagram",
-    href: "#",
-    icon: <Instagram className="w-4 h-4" />,
-    color: "hover:bg-[#E4405F]/10 hover:text-[#E4405F]",
-  },
-];
-
   return (
-    <footer className="bg-[#f7efe2] dark:bg-[#1a1a1a] pt-24 pb-8 px-6 relative overflow-hidden transition-colors duration-700 border-t border-neutral-200 dark:border-neutral-800">
+    <footer className="bg-background pt-24 pb-8 px-6 relative overflow-hidden transition-colors duration-700 border-t border-neutral-200 dark:border-neutral-800">
       
       {/* Background Noise Texture */}
       <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
@@ -45,8 +24,8 @@ const socialLinks = [
               viewport={{ once: true }}
               className="flex items-center gap-3 mb-4"
             >
-              <div className="w-8 h-[1px] bg-[#235347] dark:bg-[#4a8b7a]" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#235347] dark:text-[#4a8b7a]">
+              <div className="w-8 h-[1px] bg-primary" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-primary">
                 Project Inquiry
               </span>
             </motion.div>
@@ -57,7 +36,7 @@ const socialLinks = [
               viewport={{ once: true }}
               className="text-4xl md:text-6xl font-medium tracking-tight text-black dark:text-white leading-[1.1] mb-8"
             >
-              Ready to <span className="italic font-light text-[#235347]">elevate</span> your <br className="hidden md:block" />
+              Ready to <span className="italic font-light text-primary">elevate</span> your <br className="hidden md:block" />
               digital presence?
             </motion.h2>
 
@@ -81,13 +60,13 @@ const socialLinks = [
             className="flex gap-16 md:gap-24"
           >
              <div className="flex flex-col gap-6">
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#235347] dark:text-[#4a8b7a]">
+                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">
                   Contact info
                 </span>
                 <ul className="space-y-3">
-                  <li><a href="mailto:sajjadhossainx06@gmail.com" className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors">sajjadhossainx06@gmail.com</a></li>
-                  <li><a href="tel:01907488316" className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors">01907488316</a></li>
-                  <li className="text-sm font-medium text-zinc-600 dark:text-zinc-300 pt-2">Dhaka, Bangladesh</li>
+                  <li><a href={`mailto:${personalInfo.email}`} className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors">{personalInfo.email}</a></li>
+                  <li><a href={`tel:${personalInfo.phone}`} className="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors">{personalInfo.phone}</a></li>
+                  <li className="text-sm font-medium text-zinc-600 dark:text-zinc-300 pt-2">{personalInfo.location}</li>
                 </ul>
              </div>
           </motion.div>

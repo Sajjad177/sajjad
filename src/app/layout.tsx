@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
-import { Inconsolata, Signika } from "next/font/google";
+import { Outfit } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 
-const inconsolata = Inconsolata({
+const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["400", "500"],
   variable: "--font-body",
-});
-
-const signika = Signika({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-title",
 });
 
 export const metadata: Metadata = {
@@ -31,9 +24,12 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inconsolata.variable} ${signika.variable}`}
+      className={`${outfit.variable}`}
     >
-      <body className="transition-colors duration-500 bg-neutral-50 text-black dark:bg-neutral-950 dark:text-white">
+      <head>
+        <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet" />
+      </head>
+      <body className="font-sans antialiased transition-colors duration-500 bg-background text-foreground">
         <ThemeProvider>
           <Toaster position="top-center" richColors />
           {children}

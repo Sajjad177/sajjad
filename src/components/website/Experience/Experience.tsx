@@ -5,26 +5,26 @@ const experienceData = [
   {
     id: "01",
     role: "Full-Stack Developer",
-    company: "Vendo Food Distribution",
-    period: "Dec 2023 — Present",
+    company: "Betopia Group",
+    period: "March 2025 — Present",
     location: "Dhaka, Bangladesh",
     description:
-      "Leading the development of a B2B marketplace handling high-volume food logistics and real-time inventory.",
+      "Working on a B2B marketplace handling high-volume food logistics and real-time inventory.",
   },
   {
     id: "02",
-    role: "UI/UX Designer",
-    company: "Michael's Rental Project",
-    period: "Feb 2024 — April 2024",
-    location: "Remote",
+    role: "Intern",
+    company: "NACTER",
+    period: "March 2024 — August 2024",
+    location: "Bogra, Bangladesh",
     description:
-      "Designed a premium showroom interface for niche equipment rentals, focusing on high-end SaaS aesthetics.",
+      "Worked on developing a web application for NACTER, a national-level organization for technical and vocational education and training in Bangladesh.",
   },
 ];
 
 const Experience = () => {
   return (
-    <section className="bg-[#f7efe2] dark:bg-[#1a1a1a] py-18 px-6 transition-colors duration-500">
+    <section className="bg-background py-18 px-6 transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
         
         {/* Header */}
@@ -32,12 +32,12 @@ const Experience = () => {
           <motion.span 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="text-xs font-bold uppercase tracking-[0.5em] text-[#235347] dark:text-[#4a8b7a]"
+            className="text-xs font-bold uppercase tracking-[0.5em] text-primary"
           >
             My Professional Journey
           </motion.span>
           <h2 className="text-7xl md:text-9xl font-medium tracking-tighter text-black dark:text-white leading-none">
-            Experience<span className="italic text-[#235347] dark:text-[#4a8b7a]">.</span>
+            Experience<span className="italic text-primary">.</span>
           </h2>
         </header>
 
@@ -60,10 +60,10 @@ const Experience = () => {
               ${index === 2 ? "md:mt-48" : ""}`}
             >
               {/* Timeline Dot */}
-              <span className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#235347] dark:bg-[#4a8b7a]" />
+              <span className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary" />
 
               {/* Number */}
-              <span className="text-3xl font-serif italic text-[#235347] dark:text-[#4a8b7a] block mb-6">
+              <span className="text-3xl font-serif italic text-primary block mb-6">
                 {exp.id}
               </span>
 
@@ -97,7 +97,7 @@ const Experience = () => {
                 initial={{ height: "0%" }}
                 whileHover={{ height: "100%" }}
                 transition={{ duration: 0.4 }}
-                className="absolute left-0 top-0 w-[1px] bg-[#235347] dark:bg-[#4a8b7a] opacity-20"
+                className="absolute left-0 top-0 w-[1px] bg-primary opacity-20"
               />
             </motion.div>
           ))}

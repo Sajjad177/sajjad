@@ -22,7 +22,7 @@ const AboutUs = () => {
   };
 
   return (
-    <section id="about" className="bg-[#f7efe2] dark:bg-[#1a1a1a] py-20 md:py-32 px-4 sm:px-6 transition-colors duration-300">
+    <section id="about" className="bg-background py-20 md:py-32 px-4 sm:px-6 transition-colors duration-300">
       <motion.div
         className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12"
         variants={containerVariants}
@@ -32,8 +32,8 @@ const AboutUs = () => {
       >
         {/* Left Label */}
         <motion.div variants={itemVariants} className="md:col-span-3">
-          <p className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-widest text-[#235347] dark:text-[#4a8b7a] flex items-center gap-2">
-            <span className="w-6 sm:w-8 h-px bg-[#235347] dark:bg-[#4a8b7a]"></span>
+          <p className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-widest text-primary flex items-center gap-2">
+            <span className="w-6 sm:w-8 h-px bg-primary"></span>
             About Me
           </p>
         </motion.div>
@@ -44,7 +44,7 @@ const AboutUs = () => {
             variants={itemVariants}
             className="text-[clamp(28px,5vw,56px)] font-medium text-black dark:text-white leading-tight tracking-tight mb-8 md:mb-12"
           >
-            I build <span className="text-[#235347] italic">scalable</span> and <span className="text-[#235347] italic">efficient</span> web applications that solve real-world problems.
+            I build <span className="text-primary italic">scalable</span> and <span className="text-primary italic">efficient</span> web applications that solve real-world problems.
           </motion.h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">

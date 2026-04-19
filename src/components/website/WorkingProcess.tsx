@@ -2,85 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-
-const steps = [
-  {
-    id: '01',
-    title: 'Requirement Discussion',
-    description: 'We address key problems directly in the headline. Understand your goals and capture requirements.',
-    color: 'orange',
-  },
-  {
-    id: '02',
-    title: 'Planning & Architecture',
-    description: 'Showcase the main benefits of your product. Each requirement mapped gracefully into system architecture.',
-    color: 'blue',
-  },
-  {
-    id: '03',
-    title: 'Development',
-    description: 'We build your product using standard guidelines. Writing clean, scalable code for maximum value.',
-    color: 'purple',
-  },
-  {
-    id: '04',
-    title: 'Testing',
-    description: 'List core functionalities clearly. Connect features to rigorous quality testing and security checks.',
-    color: 'rose',
-  },
-  {
-    id: '05',
-    title: 'Deployment',
-    description: 'Finalizing the setup and pushing it live. A seamless transition into the production environment.',
-    color: 'emerald',
-  },
-];
-
-interface ColorTheme {
-  border: string;
-  shadowLayer: string;
-  textHighlight: string;
-  pin: string;
-  cardBg: string;
-}
-
-const colorMap: Record<string, ColorTheme> = {
-  orange: {
-    border: 'border-orange-100 dark:border-orange-900/30',
-    shadowLayer: 'bg-[#FFF9F0] dark:bg-orange-950/20',
-    textHighlight: 'text-orange-500 dark:text-orange-400',
-    pin: 'from-orange-400 to-orange-600 shadow-orange-500/30',
-    cardBg: 'bg-white dark:bg-zinc-900',
-  },
-  blue: {
-    border: 'border-blue-100 dark:border-blue-900/30',
-    shadowLayer: 'bg-[#F0F6FF] dark:bg-blue-950/20',
-    textHighlight: 'text-blue-500 dark:text-blue-400',
-    pin: 'from-blue-400 to-blue-600 shadow-blue-500/30',
-    cardBg: 'bg-white dark:bg-zinc-900',
-  },
-  purple: {
-    border: 'border-purple-100 dark:border-purple-900/30',
-    shadowLayer: 'bg-[#F8F0FF] dark:bg-purple-950/20',
-    textHighlight: 'text-purple-500 dark:text-purple-400',
-    pin: 'from-purple-400 to-purple-600 shadow-purple-500/30',
-    cardBg: 'bg-white dark:bg-zinc-900',
-  },
-  rose: {
-    border: 'border-rose-100 dark:border-rose-900/30',
-    shadowLayer: 'bg-[#FFF0F2] dark:bg-rose-950/20',
-    textHighlight: 'text-rose-500 dark:text-rose-400',
-    pin: 'from-rose-400 to-rose-600 shadow-rose-500/30',
-    cardBg: 'bg-white dark:bg-zinc-900',
-  },
-  emerald: {
-    border: 'border-emerald-100 dark:border-emerald-900/30',
-    shadowLayer: 'bg-[#F0FDF4] dark:bg-emerald-950/20',
-    textHighlight: 'text-emerald-500 dark:text-emerald-400',
-    pin: 'from-emerald-400 to-emerald-600 shadow-emerald-500/30',
-    cardBg: 'bg-white dark:bg-zinc-900',
-  },
-};
+import { workingProcessSteps as steps, colorMap } from '@/config/data';
 
 const Connector = ({ index }: { index: number }) => {
   const isLeft = index % 2 === 0;
@@ -117,7 +39,7 @@ export default function WorkingProcess() {
   const [isMarqueeHovered, setIsMarqueeHovered] = useState(false);
 
   return (
-    <section ref={containerRef} className="py-24 overflow-hidden bg-[#f7efe2] dark:bg-transparent">
+    <section ref={containerRef} className="py-24 overflow-hidden bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Header */}
@@ -135,7 +57,7 @@ export default function WorkingProcess() {
 
             <h2 className="text-[clamp(40px,8vw,120px)] font-medium tracking-tighter text-black dark:text-white leading-none">
               Process
-              <span className="text-[#235347] dark:text-[#4a8b7a] italic">.</span>
+              <span className="text-primary italic">.</span>
             </h2>
           </motion.div>
 
@@ -179,7 +101,7 @@ export default function WorkingProcess() {
                     transition={{ type: "spring", delay: 0.2 }}
                     className="absolute left-0 top-6 w-14 flex justify-center md:hidden"
                   >
-                    <div className="w-4 h-4 rounded-full bg-[#235347] dark:bg-zinc-700 z-10 box-content border-4 border-white dark:border-zinc-950" />
+                    <div className="w-4 h-4 rounded-full bg-primary z-10 box-content border-4 border-white dark:border-zinc-950" />
                   </motion.div>
 
                   <Connector index={index} />
@@ -251,13 +173,11 @@ export default function WorkingProcess() {
       >
         {/* Left Fade */}
         <div className="pointer-events-none absolute left-0 top-0 h-full w-32 
-          bg-gradient-to-r from-[#f7efe2] to-transparent 
-          dark:from-[#1a1a1a] z-10" />
+          bg-gradient-to-r from-background to-transparent z-10" />
 
         {/* Right Fade */}
         <div className="pointer-events-none absolute right-0 top-0 h-full w-32 
-          bg-gradient-to-l from-[#f7efe2] to-transparent 
-          dark:from-[#1a1a1a] z-10" />
+          bg-gradient-to-l from-background to-transparent z-10" />
 
         {/* Marquee */}
         <motion.div
@@ -282,39 +202,37 @@ export default function WorkingProcess() {
                 PLAN
 
                 {/* Accent underline */}
-                <span className="absolute left-0 bottom-1 w-0 h-[2px] bg-[#235347] dark:bg-[#4a8b7a] group-hover:w-full transition-all duration-500" />
+                <span className="absolute left-0 bottom-1 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-500" />
               </span>
 
-              <span className="mx-6 text-[#235347]/30 dark:text-[#4a8b7a]/30">•</span>
+              <span className="mx-6 text-primary/30">•</span>
 
               <span>BUILD</span>
 
-              <span className="mx-6 text-[#235347]/30 dark:text-[#4a8b7a]/30">•</span>
+              <span className="mx-6 text-primary/30">•</span>
 
               <span>TEST</span>
 
-              <span className="mx-6 text-[#235347]/30 dark:text-[#4a8b7a]/30">•</span>
+              <span className="mx-6 text-primary/30">•</span>
 
               <span>LAUNCH</span>
 
-              <span className="mx-6 text-[#235347]/30 dark:text-[#4a8b7a]/30">•</span>
+              <span className="mx-6 text-primary/30">•</span>
 
               <span>GROW</span>
               
-              <span className="ml-6 text-[#235347]/30 dark:text-[#4a8b7a]/30">•</span>
+              <span className="ml-6 text-primary/30">•</span>
             </h3>
           ))}
         </motion.div>
 
         {/* Subtle top highlight line */}
         <div className="absolute top-0 left-0 w-full h-[1px] 
-          bg-gradient-to-r from-transparent via-[#235347]/20 to-transparent 
-          dark:via-[#4a8b7a]/20" />
+          bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
 
         {/* Subtle bottom highlight line */}
         <div className="absolute bottom-0 left-0 w-full h-[1px] 
-          bg-gradient-to-r from-transparent via-[#235347]/20 to-transparent 
-          dark:via-[#4a8b7a]/20" />
+          bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
       </div>
     </section>
   );

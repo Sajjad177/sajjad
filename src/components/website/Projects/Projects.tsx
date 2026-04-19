@@ -35,7 +35,7 @@ const Projects = () => {
   return (
     <section
       onMouseMove={handleMouseMove}
-      className="bg-[#f7efe2] dark:bg-[#1a1a1a] py-20 md:py-32 px-4 sm:px-6 md:px-12 relative overflow-hidden transition-colors duration-300"
+      className="bg-background py-20 md:py-32 px-4 sm:px-6 md:px-12 relative overflow-hidden transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto">
 
@@ -48,7 +48,7 @@ const Projects = () => {
 
             <h2 className="text-[clamp(40px,8vw,120px)] font-medium tracking-tighter text-black dark:text-white leading-none">
               Featured <br />
-              <span className="text-[#235347] dark:text-[#4a8b7a] italic">
+              <span className="text-primary italic">
                 Work.
               </span>
             </h2>

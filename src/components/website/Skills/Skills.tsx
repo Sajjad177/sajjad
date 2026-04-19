@@ -60,7 +60,7 @@ const Skills = () => {
   return (
     <section 
       onMouseMove={handleMouseMove}
-      className="relative bg-[#f7efe2] dark:bg-[#1a1a1a] py-20 md:py-32 px-4 sm:px-6 transition-colors duration-300 overflow-hidden"
+      className="relative bg-background py-20 md:py-32 px-4 sm:px-6 transition-colors duration-300 overflow-hidden"
     >
       {/* Floating Image Preview */}
       <AnimatePresence>
@@ -103,7 +103,7 @@ const Skills = () => {
             <h2 className="text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-zinc-400 mb-3">Expertise</h2>
             <p className="text-[clamp(28px,5vw,48px)] font-medium text-black dark:text-white tracking-tight leading-tight">
               A specialized stack for <br />
-              <span className="text-[#235347] italic">modern performance.</span>
+              <span className="text-primary italic">modern performance.</span>
             </p>
           </div>
           <div className="text-zinc-500 dark:text-zinc-400 text-sm md:text-lg font-medium">MERN Stack Developer</div>
@@ -118,7 +118,7 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="group relative rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 p-8 md:p-10 transition-all duration-500 hover:bg-[#235347] bg-[#235347]"
+              className="group relative rounded-2xl border border-zinc-200 dark:border-zinc-800 dark:bg-zinc-900 p-8 md:p-10 transition-all duration-500 hover:bg-primary bg-primary"
             >
               <h3 className="text-xs font-bold uppercase tracking-widest text-white group-hover:text-white/70 mb-8 transition-colors">
                 {category.title}

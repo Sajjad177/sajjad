@@ -65,7 +65,7 @@ const Contact = () => {
   }; 
 
   return (
-    <section id="contact" className="bg-[#f7efe2] dark:bg-[#1a1a1a] py-32 px-6 overflow-hidden transition-colors duration-500">
+    <section id="contact" className="bg-background py-32 px-6 overflow-hidden transition-colors duration-500">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-center">
         
         {/* Left Side: Editorial Content & Image */}
@@ -77,12 +77,12 @@ const Contact = () => {
           className="lg:col-span-6 space-y-12"
         >
           <header>
-            <span className="text-xs font-bold uppercase tracking-[0.5em] text-[#235347] dark:text-[#4a8b7a] mb-4 block">
+            <span className="text-xs font-bold uppercase tracking-[0.5em] text-primary mb-4 block">
               Inititalize Project
             </span>
             <h2 className="text-5xl md:text-7xl font-medium text-black dark:text-white leading-[0.95] tracking-tighter mb-8">
               Let's craft <br />
-              <span className="italic font-light text-[#235347] dark:text-[#4a8b7a]">Something great</span>.
+              <span className="italic font-light text-primary">Something great</span>.
             </h2>
             <p className="max-w-md text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed font-light">
               Focusing on modern MERN solutions and intuitive user experiences. Drop a line to discuss collaboration or consulting.
@@ -131,7 +131,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="p-12 md:p-16 rounded-[3rem] bg-[#235347] shadow-2xl relative overflow-hidden"
+            className="p-12 md:p-16 rounded-[3rem] bg-primary shadow-2xl relative overflow-hidden"
           >
             {/* Decoration Background elements for form */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
@@ -195,7 +195,7 @@ const Contact = () => {
                 <button 
                   type="submit" 
                   disabled={isSending || isSent}
-                  className="relative inline-flex items-center gap-6 py-6 px-12 bg-[#ffb02e] hover:bg-[#ffb02e] text-black font-medium rounded-full overflow-hidden transition-all duration-300 group active:scale-95 disabled:opacity-70 shadow-xl"
+                  className="relative inline-flex items-center gap-6 py-6 px-12 bg-secondary hover:bg-orange-400 text-black font-medium rounded-full overflow-hidden transition-all duration-300 group active:scale-95 disabled:opacity-70 shadow-xl"
                 >
                   <AnimatePresence mode="wait">
                     {isSent ? (

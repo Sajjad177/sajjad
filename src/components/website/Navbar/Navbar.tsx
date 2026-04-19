@@ -5,12 +5,7 @@ import { Menu, Moon, Star, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const navLinks = [
-  { name: "About me", href: "#about" },
-  { name: "Projects", href: "/projects" },
-  { name: "Services", href: "#services" }
-];
+import { navLinks } from "@/config/data";
 
 export default function Navbar() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -70,7 +65,7 @@ export default function Navbar() {
         {/* Navbar */}
         <div
           className={`w-full rounded-full transition-all duration-300 text-white ${
-            resolvedTheme === "dark" ? "bg-[#1a1a1a]" : "bg-[#235347]"
+            resolvedTheme === "dark" ? "bg-background" : "bg-primary"
           } ${scrolled ? "backdrop-blur-md shadow-sm" : ""}`}
         >
           <div className="px-6 h-16 flex items-center justify-between">
@@ -95,7 +90,7 @@ export default function Navbar() {
                   <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-black dark:bg-white transition-all duration-300 hover:w-full"></span>
                 </Link>
               ))}
-              <Link href="#contact" className="bg-[#FFB02E] text-black px-5 py-2 rounded-full font-medium hover:bg-orange-400 transition-colors">
+              <Link href="#contact" className="bg-secondary text-black px-5 py-2 rounded-full font-medium hover:bg-orange-400 transition-colors">
                 Get in touch!
               </Link>
             </nav>
