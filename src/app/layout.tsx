@@ -1,8 +1,9 @@
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
-import { ThemeProvider } from "@/providers/ThemeProvider";
+import { ThemeTransitionProvider } from "@/providers/ThemeTransitionProvider";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -30,10 +31,12 @@ export default function RootLayout({
         <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-sans antialiased transition-colors duration-500 bg-background text-foreground">
-        <ThemeProvider>
+        <ThemeTransitionProvider>
+          <ThemeProvider>
           <Toaster position="top-center" richColors />
           {children}
         </ThemeProvider>
+        </ThemeTransitionProvider>
       </body>
     </html>
   );

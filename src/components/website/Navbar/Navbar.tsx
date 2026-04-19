@@ -6,48 +6,16 @@ import { Menu, Moon, Star, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useThemeTransition } from "@/providers/ThemeTransitionProvider";
 
 export default function Navbar() {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
+  const { triggerThemeChange, isAnimating } = useThemeTransition();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const toggleTheme = (e: React.MouseEvent) => {
-    const isDark = resolvedTheme === "dark";
-    const nextTheme = isDark ? "light" : "dark";
-
-    if (!document.startViewTransition) {
-      setTheme(nextTheme);
-      return;
-    }
-
-    const x = Math.random() * window.innerWidth;
-    const y = Math.random() * window.innerHeight;
-    
-    const endRadius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
-    );
-
-    const transition = document.startViewTransition(() => {
-      setTheme(nextTheme);
-    });
-
-    transition.ready.then(() => {
-      document.documentElement.animate(
-        {
-          clipPath: [
-            `circle(0px at ${x}px ${y}px)`,
-            `circle(${endRadius}px at ${x}px ${y}px)`,
-          ],
-        },
-        {
-          duration: 800,
-          easing: "ease-in-out",
-          pseudoElement: "::view-transition-new(root)",
-        }
-      );
-    });
+  const toggleTheme = () => {
+    triggerThemeChange();
   };
 
   useEffect(() => {
@@ -101,7 +69,8 @@ export default function Navbar() {
               <motion.button
                 whileTap={{ scale: 0.85 }}
                 onClick={toggleTheme}
-                className="p-2 rounded-md cursor-pointer dark:hover:bg-neutral-800 transition"
+                disabled={isAnimating}
+                className="p-2 rounded-md cursor-pointer dark:hover:bg-neutral-800 transition disabled:opacity-50"
                 aria-label="Toggle Theme"
               >
                 <AnimatePresence mode="wait" initial={false}>
