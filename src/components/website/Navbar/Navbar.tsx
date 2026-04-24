@@ -6,16 +6,55 @@ import { Menu, Moon, Star, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useThemeTransition } from "@/providers/ThemeTransitionProvider";
 
 export default function Navbar() {
-  const { resolvedTheme } = useTheme();
-  const { triggerThemeChange, isAnimating } = useThemeTransition();
+  const { resolvedTheme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const toggleTheme = () => {
-    triggerThemeChange();
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
+  const toggleTheme = (e: React.MouseEvent) => {
+    const isDark = resolvedTheme === "dark";
+    const nextTheme = isDark ? "light" : "dark";
+
+    if (!document.startViewTransition) {
+      setTheme(nextTheme);
+      return;
+    }
+
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = document.startViewTransition(() => {
+      setTheme(nextTheme);
+    });
+
+    transition.ready.then(() => {
+      const clipPath = [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`,
+      ];
+
+      document.documentElement.animate(
+        {
+          clipPath,
+        },
+        {
+          duration: 700,
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)",
+        }
+      );
+    });
   };
 
   useEffect(() => {
@@ -69,8 +108,8 @@ export default function Navbar() {
               <motion.button
                 whileTap={{ scale: 0.85 }}
                 onClick={toggleTheme}
-                disabled={isAnimating}
-                className="p-2 rounded-md cursor-pointer dark:hover:bg-neutral-800 transition disabled:opacity-50"
+                whileHover={{ scale: 1.1 }}
+                className="w-10 h-10 flex items-center justify-center rounded-md cursor-pointer dark:hover:bg-neutral-800 transition disabled:opacity-50"
                 aria-label="Toggle Theme"
               >
                 <AnimatePresence mode="wait" initial={false}>
