@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, User, Mail, MessageSquareText, Sparkles } from "lucide-react";
+import { ArrowRight, User, Mail, MessageSquareText, Sparkles, CheckCircle, X } from "lucide-react";
 import Lottie from "lottie-react";
 
 const FloatInput = ({ id, label, icon: Icon, type = "text", value, onChange } : any) => (
@@ -31,6 +31,8 @@ const Contact = () => {
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", message: "" });
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [lottieData, setLottieData] = useState(null);
 
   // Magnetic Button Effect Variables
@@ -53,15 +55,33 @@ const Contact = () => {
     setButtonY((clientY - centerY) * 0.2);
   };
 
-  const handleSubmit = (e : any) => {
+  const handleSubmit = async (e : any) => {
     e.preventDefault();
     setIsSending(true);
-    setTimeout(() => {
+    setErrorMsg("");
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
       setIsSending(false);
       setIsSent(true);
+      setShowModal(true);
       setForm({ firstName: "", lastName: "", email: "", message: "" });
+      
       setTimeout(() => setIsSent(false), 3000);
-    }, 2000);
+    } catch (error) {
+      console.error(error);
+      setIsSending(false);
+      setErrorMsg("Failed to send message. Please try again.");
+    }
   }; 
 
   return (
@@ -185,6 +205,10 @@ const Contact = () => {
                 <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white origin-left scale-x-0 group-focus-within:scale-x-100 transition-transform duration-500" />
               </div>
 
+              {errorMsg && (
+                <div className="mb-4 text-red-500 text-sm font-medium">{errorMsg}</div>
+              )}
+
               {/* Magnetic Send Button */}
               <motion.div 
                 className="flex justify-end mt-8"
@@ -232,6 +256,61 @@ const Contact = () => {
           </motion.form>
         </div>
       </div>
+      
+      {/* Professional Success Modal */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-md p-8 bg-zinc-900 border border-zinc-800 rounded-3xl shadow-2xl overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary via-orange-400 to-amber-500" />
+              <button 
+                onClick={() => setShowModal(false)}
+                className="absolute top-6 right-6 text-zinc-400 hover:text-white transition-colors"
+                title="Close Modal"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              
+              <div className="flex flex-col items-center text-center mt-4">
+                <motion.div
+                  initial={{ rotate: -180, scale: 0 }}
+                  animate={{ rotate: 0, scale: 1 }}
+                  transition={{ type: "spring", delay: 0.1, duration: 0.6 }}
+                >
+                  <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                    <CheckCircle className="w-10 h-10 text-primary" />
+                  </div>
+                </motion.div>
+                
+                <h3 className="text-3xl font-bold text-white mb-4">Message Sent!</h3>
+                <p className="text-zinc-400 mb-8 font-light">
+                  Thank you for reaching out. I've received your message and will get back to you as soon as possible.
+                </p>
+                
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setShowModal(false)}
+                  className="w-full py-4 bg-primary text-black font-semibold rounded-full hover:bg-orange-400 transition-colors"
+                >
+                  Close & Continue
+                </motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
