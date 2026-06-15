@@ -25,9 +25,9 @@ export default function Navbar() {
       return;
     }
 
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
+    // Pick a random origin within the viewport so the reveal starts from a different place each toggle
+    const x = Math.floor(Math.random() * window.innerWidth);
+    const y = Math.floor(Math.random() * window.innerHeight);
 
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
