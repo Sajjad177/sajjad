@@ -1,40 +1,39 @@
-import { Github, Instagram, Linkedin } from "lucide-react";
-import React from "react";
+import { Github, Instagram, Linkedin } from 'lucide-react';
 
 export const navLinks = [
-  { name: "About me", href: "#about" },
-  { name: "Projects", href: "/projects" },
-  { name: "Services", href: "#services" },
+  { name: 'About me', href: '/#about' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Services', href: '/#services' },
 ];
 
 export const personalInfo = {
-  name: "Sajjad Hossain",
-  title: "Full Stack Developer",
-  location: "Dhaka, Bangladesh",
-  email: "sajjadhossainx06@gmail.com",
-  phone: "01907488316",
-  aboutHeading: "Building digital products, brands, and experience.",
-  aboutText: "I build scalable and efficient web applications that solve real-world problems.",
+  name: 'Sajjad Hossain',
+  title: 'Full Stack Developer',
+  location: 'Dhaka, Bangladesh',
+  email: 'sajjadhossainx06@gmail.com',
+  phone: '01907488316',
+  aboutHeading: 'Building digital products, brands, and experience.',
+  aboutText: 'I build scalable and efficient web applications that solve real-world problems.',
 };
 
 export const socialLinks = [
   {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/sajjadsajjad",
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/sajjadsajjad',
     icon: <Linkedin className="w-4 h-4" />,
-    color: "hover:bg-[#0A66C2]/10 hover:text-[#0A66C2]",
+    color: 'hover:bg-[#0A66C2]/10 hover:text-[#0A66C2]',
   },
   {
-    name: "GitHub",
-    href: "https://github.com/Sajjad177",
+    name: 'GitHub',
+    href: 'https://github.com/Sajjad177',
     icon: <Github className="w-4 h-4" />,
-    color: "hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:hover:text-white",
+    color: 'hover:bg-black/10 dark:hover:bg-white/10 hover:text-black dark:hover:text-white',
   },
   {
-    name: "Instagram",
-    href: "#",
+    name: 'Instagram',
+    href: '#',
     icon: <Instagram className="w-4 h-4" />,
-    color: "hover:bg-[#E4405F]/10 hover:text-[#E4405F]",
+    color: 'hover:bg-[#E4405F]/10 hover:text-[#E4405F]',
   },
 ];
 
@@ -42,31 +41,36 @@ export const workingProcessSteps = [
   {
     id: '01',
     title: 'Requirement Discussion',
-    description: 'We address key problems directly in the headline. Understand your goals and capture requirements.',
+    description:
+      'We address key problems directly in the headline. Understand your goals and capture requirements.',
     color: 'orange',
   },
   {
     id: '02',
     title: 'Planning & Architecture',
-    description: 'Showcase the main benefits of your product. Each requirement mapped gracefully into system architecture.',
+    description:
+      'Showcase the main benefits of your product. Each requirement mapped gracefully into system architecture.',
     color: 'blue',
   },
   {
     id: '03',
     title: 'Development',
-    description: 'We build your product using standard guidelines. Writing clean, scalable code for maximum value.',
+    description:
+      'We build your product using standard guidelines. Writing clean, scalable code for maximum value.',
     color: 'purple',
   },
   {
     id: '04',
     title: 'Testing',
-    description: 'List core functionalities clearly. Connect features to rigorous quality testing and security checks.',
+    description:
+      'List core functionalities clearly. Connect features to rigorous quality testing and security checks.',
     color: 'rose',
   },
   {
     id: '05',
     title: 'Deployment',
-    description: 'Finalizing the setup and pushing it live. A seamless transition into the production environment.',
+    description:
+      'Finalizing the setup and pushing it live. A seamless transition into the production environment.',
     color: 'emerald',
   },
 ];

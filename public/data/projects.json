@@ -36,7 +36,21 @@
     "client": "N/A",
     "stack": {
       "frontend": ["Next.js", "Zod", "Tailwind CSS"],
-      "backend": ["Node.js", "Express.js", "TypeScript", "MongoDB", "Mongoose", "Socket.IO", "WebRTC", "JWT", "Nodemailer", "Multer", "Cloudinary", "Stripe", "REST API"]
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "TypeScript",
+        "MongoDB",
+        "Mongoose",
+        "Socket.IO",
+        "WebRTC",
+        "JWT",
+        "Nodemailer",
+        "Multer",
+        "Cloudinary",
+        "Stripe",
+        "REST API"
+      ]
     },
     "liveLink": "https://evpitch.com",
     "challenge": "Building a complex candidate ranking system and maintaining secure real-time communication protocols for interviews.",
@@ -59,7 +73,20 @@
     "client": "N/A",
     "stack": {
       "frontend": ["React", "Zod", "Tailwind CSS"],
-      "backend": ["Node.js", "Express.js", "TypeScript", "MongoDB", "Mongoose", "Socket.IO", "JWT", "Nodemailer", "Multer", "Cloudinary", "Stripe", "REST API"]
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "TypeScript",
+        "MongoDB",
+        "Mongoose",
+        "Socket.IO",
+        "JWT",
+        "Nodemailer",
+        "Multer",
+        "Cloudinary",
+        "Stripe",
+        "REST API"
+      ]
     },
     "liveLink": "https://perrystownorthodontics.com",
     "challenge": "Handling sensitive patient data securely while ensuring strict compliance with GDPR and organizing multiple permission levels (patients, admins, staff).",
@@ -82,7 +109,20 @@
     "client": "N/A",
     "stack": {
       "frontend": ["React", "Zod", "Tailwind CSS"],
-      "backend": ["Node.js", "Express.js", "TypeScript", "MongoDB", "Mongoose", "Socket.IO", "JWT", "Nodemailer", "Multer", "Cloudinary", "Stripe", "REST API"]
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "TypeScript",
+        "MongoDB",
+        "Mongoose",
+        "Socket.IO",
+        "JWT",
+        "Nodemailer",
+        "Multer",
+        "Cloudinary",
+        "Stripe",
+        "REST API"
+      ]
     },
     "liveLink": "https://scubalife.net",
     "challenge": "Overcoming booking conflicts, payment failures, and ensuring seamless communication across all users during high-concurrency availability checks.",

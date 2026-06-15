@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { navLinks } from "@/config/data";
-import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Moon, Star, Sun, X } from "lucide-react";
-import { useTheme } from "next-themes";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { navLinks } from '@/config/data';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Menu, Moon, Star, Sun, X } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export default function Navbar() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -17,8 +17,8 @@ export default function Navbar() {
   };
 
   const toggleTheme = (e: React.MouseEvent) => {
-    const isDark = resolvedTheme === "dark";
-    const nextTheme = isDark ? "light" : "dark";
+    const isDark = resolvedTheme === 'dark';
+    const nextTheme = isDark ? 'light' : 'dark';
 
     if (!document.startViewTransition) {
       setTheme(nextTheme);
@@ -31,7 +31,7 @@ export default function Navbar() {
 
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
+      Math.max(y, window.innerHeight - y),
     );
 
     const transition = document.startViewTransition(() => {
@@ -39,10 +39,7 @@ export default function Navbar() {
     });
 
     transition.ready.then(() => {
-      const clipPath = [
-        `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`,
-      ];
+      const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`];
 
       document.documentElement.animate(
         {
@@ -50,9 +47,9 @@ export default function Navbar() {
         },
         {
           duration: 700,
-          easing: "ease-in-out",
-          pseudoElement: "::view-transition-new(root)",
-        }
+          easing: 'ease-in-out',
+          pseudoElement: '::view-transition-new(root)',
+        },
       );
     });
   };
@@ -61,8 +58,8 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -72,8 +69,8 @@ export default function Navbar() {
         {/* Navbar */}
         <div
           className={`w-full rounded-full transition-all duration-300 text-white ${
-            resolvedTheme === "dark" ? "bg-background" : "bg-primary"
-          } ${scrolled ? "backdrop-blur-md shadow-sm" : ""}`}
+            resolvedTheme === 'dark' ? 'bg-background' : 'bg-primary'
+          } ${scrolled ? 'backdrop-blur-md shadow-sm' : ''}`}
         >
           <div className="px-6 h-16 flex items-center justify-between">
             {/* Logo */}
@@ -97,7 +94,10 @@ export default function Navbar() {
                   <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-black dark:bg-white transition-all duration-300 hover:w-full"></span>
                 </Link>
               ))}
-              <Link href="#contact" className="bg-secondary text-black px-5 py-2 rounded-full font-medium hover:bg-orange-400 transition-colors">
+              <Link
+                href="/#contact"
+                className="bg-secondary text-black px-5 py-2 rounded-full font-medium hover:bg-orange-400 transition-colors"
+              >
                 Get in touch!
               </Link>
             </nav>
@@ -113,7 +113,7 @@ export default function Navbar() {
                 aria-label="Toggle Theme"
               >
                 <AnimatePresence mode="wait" initial={false}>
-                  {resolvedTheme === "dark" ? (
+                  {resolvedTheme === 'dark' ? (
                     <motion.div
                       key="sun"
                       initial={{ rotate: -90, opacity: 0 }}

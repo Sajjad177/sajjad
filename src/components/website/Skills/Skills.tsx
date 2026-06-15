@@ -1,45 +1,48 @@
-"use client";
-import { motion, useMotionValue, useSpring, AnimatePresence, useTransform } from "framer-motion";
-import React, { useState } from "react";
+'use client';
+import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React, { useState } from 'react';
 
 const skillCategories = [
   {
-    title: "Frontend",
+    title: 'Frontend',
     skills: [
-      { name: "React.js", img: "https://cdn.worldvectorlogo.com/logos/react-2.svg" },
-      { name: "Next.js", img: "https://cdn.worldvectorlogo.com/logos/next-js.svg" },
-      { name: "TypeScript", img: "https://cdn.worldvectorlogo.com/logos/typescript.svg" },
-      { name: "Tailwind CSS", img: "https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" },
-      { name: "Framer Motion", img: "https://pagepro.co/blog/wp-content/uploads/2020/03/framer-motion.png" },
-      { name: "Redux Toolkit", img: "https://cdn.worldvectorlogo.com/logos/redux.svg" },
+      { name: 'React.js', img: 'https://cdn.worldvectorlogo.com/logos/react-2.svg' },
+      { name: 'Next.js', img: 'https://cdn.worldvectorlogo.com/logos/next-js.svg' },
+      { name: 'TypeScript', img: 'https://cdn.worldvectorlogo.com/logos/typescript.svg' },
+      { name: 'Tailwind CSS', img: 'https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg' },
+      {
+        name: 'Framer Motion',
+        img: 'https://pagepro.co/blog/wp-content/uploads/2020/03/framer-motion.png',
+      },
+      { name: 'Redux Toolkit', img: 'https://cdn.worldvectorlogo.com/logos/redux.svg' },
     ],
   },
   {
-    title: "Backend",
+    title: 'Backend',
     skills: [
-      { name: "Node.js", img: "https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" },
-      { name: "Express.js", img: "https://adware-technologies.s3.amazonaws.com/uploads/technology/thumbnail/20/express-js.png" },
-      { name: "MongoDB", img: "https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg" },
-      { name: "PostgreSQL", img: "https://cdn.worldvectorlogo.com/logos/postgresql.svg" },
-      { name: "REST APIs", img: "https://cdn-icons-png.flaticon.com/512/603/603201.png" },
-      { name: "Authentication", img: "https://cdn-icons-png.flaticon.com/512/2091/2091584.png" },
+      { name: 'Node.js', img: 'https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg' },
+      { name: 'Express.js', img: '/images/express.png' },
+      { name: 'MongoDB', img: 'https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg' },
+      { name: 'PostgreSQL', img: 'https://cdn.worldvectorlogo.com/logos/postgresql.svg' },
+      { name: 'REST APIs', img: 'https://cdn-icons-png.flaticon.com/512/603/603201.png' },
+      { name: 'Authentication', img: 'https://cdn-icons-png.flaticon.com/512/2091/2091584.png' },
     ],
   },
   {
-    title: "Tools",
+    title: 'Tools',
     skills: [
-      { name: "Figma", img: "https://cdn.worldvectorlogo.com/logos/figma-1.svg" },
-      { name: "Git/GitHub", img: "https://cdn.worldvectorlogo.com/logos/github-icon-1.svg" },
-      { name: "Render", img: "https://cdn.worldvectorlogo.com/logos/render-1.svg" },
-      { name: "Vercel", img: "https://cdn.worldvectorlogo.com/logos/vercel.svg" },
-      { name: "Postman", img: "https://cdn.worldvectorlogo.com/logos/postman.svg" },
+      { name: 'Figma', img: '/images/figma.png' },
+      { name: 'Git/GitHub', img: 'https://cdn.worldvectorlogo.com/logos/github-icon-1.svg' },
+      { name: 'Render', img: '/images/Render.png' },
+      { name: 'Vercel', img: 'https://cdn.worldvectorlogo.com/logos/vercel.svg' },
+      { name: 'Postman', img: 'https://cdn.worldvectorlogo.com/logos/postman.svg' },
     ],
   },
 ];
 
 const Skills = () => {
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
-  
+
   // Mouse tracking
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -58,7 +61,7 @@ const Skills = () => {
   };
 
   return (
-    <section 
+    <section
       onMouseMove={handleMouseMove}
       className="relative bg-background py-20 md:py-32 px-4 sm:px-6 transition-colors duration-300 overflow-hidden"
     >
@@ -66,31 +69,31 @@ const Skills = () => {
       <AnimatePresence>
         {hoveredImage && (
           <motion.div
-            style={{ 
-              x, 
-              y, 
+            style={{
+              x,
+              y,
               rotate,
-              translateX: "-50%", 
-              translateY: "-50%" 
+              translateX: '-50%',
+              translateY: '-50%',
             }}
-            initial={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            exit={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
+            initial={{ opacity: 0, scale: 0.5, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, scale: 0.5, filter: 'blur(10px)' }}
             // ADJUSTED: Changed dimensions and added background styling
-            className="fixed top-0 left-0 pointer-events-none z-50 
-                       w-24 h-24 md:w-32 md:h-32 
-                       overflow-hidden rounded-xl 
-                       bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md 
-                       border border-white/20 dark:border-zinc-700/50 
-                       shadow-[0_10px_30px_rgba(0,0,0,0.2)] 
+            className="fixed top-0 left-0 pointer-events-none z-50
+                       w-24 h-24 md:w-32 md:h-32
+                       overflow-hidden rounded-xl
+                       bg-white/90 dark:bg-zinc-800/90 backdrop-blur-md
+                       border border-white/20 dark:border-zinc-700/50
+                       shadow-[0_10px_30px_rgba(0,0,0,0.2)]
                        flex items-center justify-center p-4"
           >
-            <motion.img 
+            <motion.img
               key={hoveredImage} // Forces animation when source changes
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              src={hoveredImage} 
-              alt="Skill Preview" 
+              src={hoveredImage}
+              alt="Skill Preview"
               className="w-full h-full object-contain drop-shadow-sm"
             />
           </motion.div>
@@ -100,13 +103,17 @@ const Skills = () => {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20 gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-zinc-400 mb-3">Expertise</h2>
+            <h2 className="text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-zinc-400 mb-3">
+              Expertise
+            </h2>
             <p className="text-[clamp(28px,5vw,48px)] font-medium text-black dark:text-white tracking-tight leading-tight">
               A specialized stack for <br />
               <span className="text-primary italic">modern performance.</span>
             </p>
           </div>
-          <div className="text-zinc-500 dark:text-zinc-400 text-sm md:text-lg font-medium">MERN Stack Developer</div>
+          <div className="text-zinc-500 dark:text-zinc-400 text-sm md:text-lg font-medium">
+            MERN Stack Developer
+          </div>
         </div>
 
         {/* Grid */}
