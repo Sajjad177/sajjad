@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, User, Mail, MessageSquareText, Sparkles, CheckCircle, X } from 'lucide-react';
-import Lottie from 'lottie-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight, CheckCircle, Mail, MessageSquareText, Sparkles, User, X } from 'lucide-react';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 const FloatInput = ({ id, label, icon: Icon, type = 'text', value, onChange }: any) => (
   <div className="relative z-0 w-full mb-10 group">
@@ -32,19 +33,9 @@ const Contact = () => {
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
-  const [lottieData, setLottieData] = useState(null);
 
-  // Magnetic Button Effect Variables
   const [buttonX, setButtonX] = useState(0);
   const [buttonY, setButtonY] = useState(0);
-
-  // useEffect(() => {
-  //   fetch('/images/Man with contact us board.json')
-  //     .then(res => res.json())
-  //     .then(data => setLottieData(data))
-  //     .catch(err => console.error("Could not load lottie animation:", err));
-  // }, []);
 
   const handleMouseMove = (e: any) => {
     const { clientX, clientY, currentTarget } = e;
@@ -58,7 +49,6 @@ const Contact = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsSending(true);
-    setErrorMsg('');
 
     try {
       const response = await fetch('/api/contact', {
@@ -68,7 +58,7 @@ const Contact = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to send message');
+        toast.error('Failed to send message. Please try again.');
       }
 
       setIsSending(false);
@@ -78,9 +68,8 @@ const Contact = () => {
 
       setTimeout(() => setIsSent(false), 3000);
     } catch (error) {
-      console.error(error);
       setIsSending(false);
-      setErrorMsg('Failed to send message. Please try again.');
+      toast.error('Failed to send message. Please try again.');
     }
   };
 
@@ -89,21 +78,21 @@ const Contact = () => {
       id="contact"
       className="bg-background py-32 px-6 overflow-hidden transition-colors duration-500"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-center">
-        {/* Left Side: Editorial Content & Image */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-stretch">
+        {/* Left Side: Editorial Content & Professional Panel */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="lg:col-span-6 space-y-12"
+          className="lg:col-span-6 flex flex-col"
         >
-          <header>
+          <header className="mb-12">
             <span className="text-xs font-bold uppercase tracking-[0.5em] text-primary mb-4 block">
-              Inititalize Project
+              Initialize Project
             </span>
             <h2 className="text-5xl md:text-7xl font-medium text-black dark:text-white leading-[0.95] tracking-tighter mb-8">
-              Let's craft <br />
+              {`Let's craft`} <br />
               <span className="italic font-light text-primary">Something great</span>.
             </h2>
             <p className="max-w-md text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed font-light">
@@ -112,54 +101,92 @@ const Contact = () => {
             </p>
           </header>
 
-          {/* Sytlish Image Card (Editorial Look) */}
+          {/* Professional Contact Panel */}
           <motion.div
-            whileHover={{ scale: 1.02, rotate: -1 }}
-            className="w-full aspect-[4/5] bg-zinc-100 dark:bg-zinc-900 rounded-[3rem] p-10 relative overflow-hidden group border border-zinc-200 dark:border-zinc-800"
+            whileHover={{ scale: 1.01 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            className="flex-1 w-full bg-gradient-to-br from-white to-zinc-50 dark:from-zinc-900 dark:to-zinc-950 rounded-[2rem] p-10 relative overflow-hidden border border-zinc-200/80 dark:border-zinc-800 shadow-sm flex flex-col justify-between"
           >
-            <img
-              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop"
-              alt="Workspace"
-              className="absolute inset-0 w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-105"
-            />
-            {/* Dark Gradient Overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-            <div className="relative z-10 h-full flex flex-col justify-end">
-              <Sparkles className="w-8 h-8 text-white mb-6" />
-              <h3 className="text-3xl font-bold text-white tracking-tight">Technical Excellence</h3>
-              <p className="text-zinc-300">From concept to scalable deployment.</p>
+            {/* Subtle ambient glow */}
+            <div className="absolute -top-24 -right-24 w-72 h-72 bg-primary/[0.07] rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                <span className="text-xs font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+                  Available for work
+                </span>
+              </div>
+
+              <h3 className="text-2xl font-bold text-black dark:text-white tracking-tight mb-2">
+                Let&rsquo;s connect
+              </h3>
+              <p className="text-zinc-600 dark:text-zinc-400 mb-8 max-w-sm leading-relaxed">
+                Open to contract work, full-time roles, and collaborations. Pick a channel below and
+                I&rsquo;ll reply within one business day.
+              </p>
+
+              <div className="grid grid-cols-1 gap-3">
+                <a
+                  href="mailto:sajjadhossainx06@gmail.com"
+                  className="flex items-center gap-4 p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 hover:border-primary/40 hover:bg-white dark:hover:bg-zinc-900 hover:shadow-md transition-all duration-300"
+                >
+                  <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-sm font-semibold text-black dark:text-white">Email</div>
+                    <div className="text-xs text-zinc-500 dark:text-zinc-400 truncate">
+                      sajjadhossainx06@gmail.com
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-zinc-400 ml-auto opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all" />
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/sajjadsajjad"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-4 p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 hover:border-primary/40 hover:bg-white dark:hover:bg-zinc-900 hover:shadow-md transition-all duration-300"
+                >
+                  <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <User className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-sm font-semibold text-black dark:text-white">LinkedIn</div>
+                    <div className="text-xs text-zinc-500 dark:text-zinc-400 truncate">
+                      linkedin.com/in/sajjadsajjad
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div className="relative z-10 mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+              <span className="text-xs text-zinc-500 dark:text-zinc-500">Usual response time</span>
+              <span className="text-xs font-semibold text-black dark:text-white">~24 hours</span>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Right Side: The Form & Lottie */}
-        <div className="lg:col-span-6 relative z-10">
-          {/* Peeking Lottie Animation */}
-          {lottieData && (
-            <motion.div
-              initial={{ y: 200, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ type: 'spring', stiffness: 40, delay: 0.6 }}
-              className="absolute -top-40 md:-top-56 right-8 md:right-16 w-56 md:w-72 h-56 md:h-72 -z-10"
-            >
-              <Lottie animationData={lottieData} loop={true} />
-            </motion.div>
-          )}
-
+        {/* Right Side: The Form */}
+        <div className="lg:col-span-6 relative z-10 flex">
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="p-12 md:p-16 rounded-[3rem] bg-primary shadow-2xl relative overflow-hidden"
+            className="w-full p-12 md:p-16 rounded-[3rem] bg-primary shadow-2xl relative overflow-hidden flex flex-col"
           >
             {/* Decoration Background elements for form */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
-            <div className="relative z-10">
+            <div className="relative z-10 flex-1 flex flex-col">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 mb-4">
                 <FloatInput
                   id="firstName"
@@ -187,7 +214,7 @@ const Contact = () => {
               />
 
               {/* Textarea Component */}
-              <div className="relative z-0 w-full mb-16 group">
+              <div className="relative z-0 w-full mb-10 group flex-1">
                 <MessageSquareText className="absolute top-3 left-0 w-5 h-5 text-white/50 transition-colors group-focus-within:text-white" />
                 <textarea
                   id="message"
@@ -207,11 +234,9 @@ const Contact = () => {
                 <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white origin-left scale-x-0 group-focus-within:scale-x-100 transition-transform duration-500" />
               </div>
 
-              {errorMsg && <div className="mb-4 text-red-500 text-sm font-medium">{errorMsg}</div>}
-
               {/* Magnetic Send Button */}
               <motion.div
-                className="flex justify-end mt-8"
+                className="flex justify-end"
                 animate={{ x: buttonX, y: buttonY }}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={() => {
@@ -300,8 +325,8 @@ const Contact = () => {
 
                 <h3 className="text-3xl font-bold text-white mb-4">Message Sent!</h3>
                 <p className="text-zinc-400 mb-8 font-light">
-                  Thank you for reaching out. I've received your message and will get back to you as
-                  soon as possible.
+                  {`Thank you for reaching out. I've received your message and will get back to you as
+                  soon as possible.`}
                 </p>
 
                 <motion.button
