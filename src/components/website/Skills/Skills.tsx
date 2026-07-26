@@ -6,13 +6,13 @@ const skillCategories = [
   {
     title: 'Frontend',
     skills: [
-      { name: 'React.js', img: 'https://cdn.worldvectorlogo.com/logos/react-2.svg' },
+      { name: 'React.js', img: '/images/react-1.png' },
       { name: 'Next.js', img: 'https://cdn.worldvectorlogo.com/logos/next-js.svg' },
       { name: 'TypeScript', img: 'https://cdn.worldvectorlogo.com/logos/typescript.svg' },
       { name: 'Tailwind CSS', img: 'https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg' },
       {
         name: 'Framer Motion',
-        img: 'https://pagepro.co/blog/wp-content/uploads/2020/03/framer-motion.png',
+        img: '/images/framer-motion.png',
       },
       { name: 'Redux Toolkit', img: 'https://cdn.worldvectorlogo.com/logos/redux.svg' },
     ],
@@ -23,7 +23,7 @@ const skillCategories = [
       { name: 'Node.js', img: 'https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg' },
       { name: 'Express.js', img: '/images/express.png' },
       { name: 'MongoDB', img: 'https://cdn.worldvectorlogo.com/logos/mongodb-icon-1.svg' },
-      { name: 'PostgreSQL', img: 'https://cdn.worldvectorlogo.com/logos/postgresql.svg' },
+      { name: 'PostgreSQL', img: '/images/postgress.png' },
       { name: 'REST APIs', img: 'https://cdn-icons-png.flaticon.com/512/603/603201.png' },
       { name: 'Authentication', img: 'https://cdn-icons-png.flaticon.com/512/2091/2091584.png' },
     ],
