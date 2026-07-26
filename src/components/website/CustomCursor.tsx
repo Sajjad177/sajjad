@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 
 const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -90,7 +89,6 @@ const CustomCursor = () => {
               exit={{ opacity: 0, scale: 0, rotate: 45 }}
               transition={{ duration: 0.2 }}
             >
-              {/* <ArrowUpRight className="w-6 h-6 text-black" strokeWidth={3} /> */}
             </motion.div>
           )}
         </AnimatePresence>

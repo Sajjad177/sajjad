@@ -1,6 +1,7 @@
 "use client";
 import { motion, Variants } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -94,10 +95,12 @@ const ProjectsPage = () => {
               >
                 {/* Image Container */}
                 <Link href={`/project/${project.id}`} className="relative block overflow-hidden rounded-[2rem] aspect-[4/3] bg-zinc-200 dark:bg-zinc-800 mb-8 border border-zinc-200 dark:border-zinc-800">
-                  <img
+                  <Image
                     src={project.image[0]}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
                   
                   {/* Hover Overlay */}

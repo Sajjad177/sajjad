@@ -44,7 +44,7 @@ const Services = () => {
           <p className="max-w-[300px] text-zinc-500 dark:text-zinc-400 text-base md:text-lg leading-snug font-light">
             Delivering end-to-end robust solutions. From fluid interfaces to scalable backends.{' '}
             <span className="text-primary font-semibold italic">
-              Let's build something together.
+              Let&apos;s build something together.
             </span>
           </p>
         </header>
@@ -144,7 +144,7 @@ const Services = () => {
 
               <span className="mx-6 text-primary/30">•</span>
 
-              <span>Let's Collaborate</span>
+              <span>Let&apos;s Collaborate</span>
             </h3>
           ))}
         </motion.div>

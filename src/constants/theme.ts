@@ -45,8 +45,8 @@ export const DARK_GLOWS: Record<DayPhase, string> = {
 };
 
 export const LIGHT_BASE_ATMOSPHERE: Omit<ThemeAtmosphere, "sky" | "glow"> = {
-  cloudColor: "rgba(96, 91, 82, 0.24)",
-  cloudOpacity: 0.08,
+  cloudColor: "rgba(86, 82, 76, 0.34)",
+  cloudOpacity: 0.16,
   dimColor: "rgba(174, 121, 64, 1)",
   dimOpacity: 0,
   fogColor: "rgba(255, 248, 232, 0.48)",
@@ -69,7 +69,7 @@ export const LIGHT_BASE_ATMOSPHERE: Omit<ThemeAtmosphere, "sky" | "glow"> = {
 
 export const DARK_BASE_ATMOSPHERE: Omit<ThemeAtmosphere, "sky" | "glow"> = {
   cloudColor: "rgba(255, 255, 255, 0.8)",
-  cloudOpacity: 0.1,
+  cloudOpacity: 0.16,
   dimColor: "rgba(9, 9, 11, 1)",
   dimOpacity: 0,
   fogColor: "rgba(255, 255, 255, 0.3)",

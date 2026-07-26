@@ -1,6 +1,7 @@
 "use client";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -122,10 +123,12 @@ const Projects = () => {
           }}
         >
           {activeImage && (
-            <img
+            <Image
               src={activeImage}
               alt="Project preview"
-              className="w-full h-full object-cover brightness-90 transition-all duration-700"
+              fill
+              sizes="450px"
+              className="object-cover brightness-90 transition-all duration-700"
             />
           )}
         </motion.div>

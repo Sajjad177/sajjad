@@ -11,13 +11,11 @@ export default function Navbar() {
   const { resolvedTheme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const activeTheme = mounted ? resolvedTheme : 'light';
 
-  const handleOpen = () => {
-    setOpen(!open);
-  };
-
-  const toggleTheme = (e: React.MouseEvent) => {
-    const isDark = resolvedTheme === 'dark';
+  const toggleTheme = () => {
+    const isDark = activeTheme === 'dark';
     const nextTheme = isDark ? 'light' : 'dark';
 
     if (!document.startViewTransition) {
@@ -55,6 +53,14 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setMounted(true);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -69,7 +75,7 @@ export default function Navbar() {
         {/* Navbar */}
         <div
           className={`w-full rounded-full transition-all duration-300 text-white ${
-            resolvedTheme === 'dark' ? 'bg-background' : 'bg-primary'
+            activeTheme === 'dark' ? 'bg-background' : 'bg-primary'
           } ${scrolled ? 'backdrop-blur-md shadow-sm' : ''}`}
         >
           <div className="px-6 h-16 flex items-center justify-between">
@@ -113,7 +119,7 @@ export default function Navbar() {
                 aria-label="Toggle Theme"
               >
                 <AnimatePresence mode="wait" initial={false}>
-                  {resolvedTheme === 'dark' ? (
+                  {activeTheme === 'dark' ? (
                     <motion.div
                       key="sun"
                       initial={{ rotate: -90, opacity: 0 }}

@@ -46,7 +46,7 @@ export const calculateThemeAtmosphere = (
   if (condition === "partly-cloudy") {
     return {
       ...visual,
-      cloudOpacity: isDark ? 0.14 : 0.11,
+      cloudOpacity: isDark ? 0.2 : 0.2,
       starOpacity: visual.starOpacity * 0.72,
       orbOpacity: visual.orbOpacity * 0.86,
     };
@@ -55,8 +55,8 @@ export const calculateThemeAtmosphere = (
   if (condition === "cloudy") {
     return {
       ...visual,
-      cloudColor: isDark ? "rgba(228, 228, 231, 0.85)" : "rgba(88, 83, 76, 0.3)",
-      cloudOpacity: isDark ? 0.22 : 0.13,
+      cloudColor: isDark ? "rgba(228, 228, 231, 0.85)" : "rgba(82, 78, 72, 0.4)",
+      cloudOpacity: isDark ? 0.26 : 0.22,
       dimColor: isDark ? "rgba(9, 9, 11, 1)" : "rgba(193, 136, 72, 1)",
       dimOpacity: isDark ? 0.2 : 0.07,
       starOpacity: visual.starOpacity * 0.18,
@@ -69,8 +69,8 @@ export const calculateThemeAtmosphere = (
 
     return {
       ...visual,
-      cloudColor: isDark ? "rgba(212, 212, 216, 0.8)" : "rgba(82, 78, 72, 0.32)",
-      cloudOpacity: isDark ? 0.24 : 0.13,
+      cloudColor: isDark ? "rgba(212, 212, 216, 0.8)" : "rgba(74, 70, 66, 0.42)",
+      cloudOpacity: isDark ? 0.28 : 0.22,
       dimColor: isDark ? "rgba(9, 9, 11, 1)" : "rgba(191, 125, 58, 1)",
       dimOpacity: isDark ? (isRain ? 0.26 : 0.18) : isRain ? 0.08 : 0.05,
       rainOpacity: isDark ? (isRain ? 0.38 : 0.22) : isRain ? 0.18 : 0.11,
@@ -82,8 +82,8 @@ export const calculateThemeAtmosphere = (
   if (condition === "thunderstorm") {
     return {
       ...visual,
-      cloudColor: isDark ? "rgba(161, 161, 170, 0.8)" : "rgba(70, 67, 63, 0.34)",
-      cloudOpacity: isDark ? 0.28 : 0.14,
+      cloudColor: isDark ? "rgba(161, 161, 170, 0.8)" : "rgba(64, 61, 58, 0.44)",
+      cloudOpacity: isDark ? 0.32 : 0.24,
       dimColor: isDark ? "rgba(9, 9, 11, 1)" : "rgba(166, 103, 52, 1)",
       dimOpacity: isDark ? 0.34 : 0.1,
       rainOpacity: isDark ? 0.28 : 0.14,
@@ -95,8 +95,8 @@ export const calculateThemeAtmosphere = (
   if (condition === "fog" || condition === "mist") {
     return {
       ...visual,
-      cloudColor: isDark ? "rgba(255, 255, 255, 0.7)" : "rgba(116, 108, 94, 0.2)",
-      cloudOpacity: isDark ? 0.16 : 0.09,
+      cloudColor: isDark ? "rgba(255, 255, 255, 0.7)" : "rgba(104, 98, 88, 0.3)",
+      cloudOpacity: isDark ? 0.2 : 0.16,
       dimColor: isDark ? "rgba(9, 9, 11, 1)" : "rgba(216, 158, 88, 1)",
       dimOpacity: isDark ? 0.12 : 0.05,
       fogOpacity: isDark ? 0.46 : 0.24,

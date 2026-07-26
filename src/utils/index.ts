@@ -3,4 +3,5 @@ export * from "./calculateLocalTime";
 export * from "./calculateOrbPosition";
 export * from "./calculateThemeAtmosphere";
 export * from "./calculateWeatherMotion";
+export * from "./chat";
 export * from "./weatherMapper";

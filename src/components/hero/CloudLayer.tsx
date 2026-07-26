@@ -32,7 +32,7 @@ export const CloudLayer = memo(function CloudLayer({
       {activeClouds.map((cloud, index) => (
         <motion.div
           key={cloud.id}
-          className={`${index > 1 ? "hidden lg:block" : ""} absolute h-10 rounded-full blur-md`}
+          className={`${index > 1 ? "hidden lg:block" : ""} absolute h-10 rounded-full blur-sm`}
           style={{
             top: cloud.top,
             width: cloud.width,

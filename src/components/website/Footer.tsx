@@ -1,11 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { personalInfo, socialLinks } from "@/config/data";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const [isMarqueeHovered, setIsMarqueeHovered] = useState(false);
 
   return (
     <footer className="bg-background pt-24 pb-8 px-6 relative overflow-hidden transition-colors duration-700 border-t border-neutral-200 dark:border-neutral-800">
