@@ -1,13 +1,16 @@
 import type { TimeAtmosphere, WeatherMotion } from "./environment";
 import type { ThemeAtmosphere, ThemeMode } from "./theme";
 import type { WeatherCondition } from "./weather";
+import type { MotionValue } from "framer-motion";
 
 export type EnvironmentLayerProps = {
   atmosphere: TimeAtmosphere;
+  scrollProgress: MotionValue<number>;
   weather: WeatherCondition | null;
 };
 
 export type EnvironmentVisualProps = {
+  scrollProgress: MotionValue<number>;
   shouldReduceMotion: boolean;
   themeMode: ThemeMode;
   themeVisuals: ThemeAtmosphere;

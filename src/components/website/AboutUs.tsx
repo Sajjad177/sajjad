@@ -1,7 +1,21 @@
 "use client";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 const AboutUs = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "start 52%"],
+  });
+  const aboutProgress = useSpring(scrollYProgress, {
+    stiffness: 95,
+    damping: 30,
+    mass: 0.4,
+  });
+  const sectionOpacity = useTransform(aboutProgress, [0, 0.72, 1], [0.18, 0.78, 1]);
+  const sectionY = useTransform(aboutProgress, [0, 1], [34, 0]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -22,7 +36,13 @@ const AboutUs = () => {
   };
 
   return (
-    <section id="about" className="bg-background py-20 md:py-32 px-4 sm:px-6 transition-colors duration-300">
+    <motion.section
+      ref={sectionRef}
+      id="about"
+      className="relative z-10 -mt-10 bg-background px-4 py-20 transition-colors duration-300 sm:px-6 md:-mt-16 md:py-32"
+      style={{ opacity: sectionOpacity, y: sectionY }}
+    >
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-20 -translate-y-full bg-gradient-to-b from-transparent to-background md:h-28" />
       <motion.div
         className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12"
         variants={containerVariants}
@@ -70,7 +90,7 @@ const AboutUs = () => {
           </div>
         </div>
       </motion.div>
-    </section>
+    </motion.section>
   );
 };
 
