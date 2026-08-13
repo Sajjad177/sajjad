@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { Globe, Server } from 'lucide-react';
 import { useState } from 'react';
+import { Reveal } from '@/components/animations';
 
 const services = [
   {
@@ -29,7 +30,8 @@ const Services = () => {
     <section id="services" className="bg-background py-24 px-6 transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
         {/* Header matching Experience section */}
-        <header className="mb-20 md:mb-32 flex flex-col md:flex-row md:items-end justify-between pb-10 md:pb-12 gap-6">
+        <Reveal className="mb-20 md:mb-32">
+        <header className="flex flex-col md:flex-row md:items-end justify-between pb-10 md:pb-12 gap-6">
           <div className="space-y-4">
             <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-400">
               What I Do.
@@ -48,6 +50,7 @@ const Services = () => {
             </span>
           </p>
         </header>
+        </Reveal>
 
         {/* Animated Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">

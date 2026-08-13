@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { Reveal } from "@/components/animations";
 
 const experienceData = [
   {
@@ -29,16 +30,18 @@ const Experience = () => {
         
         {/* Header */}
         <header className="mb-40 space-y-4">
-          <motion.span 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+          <Reveal>
+          <span
             className="text-xs font-bold uppercase tracking-[0.5em] text-primary"
           >
             My Professional Journey
-          </motion.span>
+          </span>
+          </Reveal>
+          <Reveal delay={0.08}>
           <h2 className="text-7xl md:text-9xl font-medium tracking-tighter text-black dark:text-white leading-none">
             Experience<span className="italic text-primary">.</span>
           </h2>
+          </Reveal>
         </header>
 
         {/* Timeline */}

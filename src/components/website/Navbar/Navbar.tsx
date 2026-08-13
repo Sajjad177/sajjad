@@ -12,11 +12,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const handleOpen = () => {
-    setOpen(!open);
-  };
-
-  const toggleTheme = (e: React.MouseEvent) => {
+  const toggleTheme = () => {
     const isDark = resolvedTheme === 'dark';
     const nextTheme = isDark ? 'light' : 'dark';
 

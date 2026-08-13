@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import type { Project } from "@/types";
+import { Parallax } from "@/components/animations";
 
 type ProjectImageGalleryProps = {
   currentImageIndex: number;
@@ -14,7 +15,7 @@ export const ProjectImageGallery = ({
   project,
   onOpenModal,
 }: ProjectImageGalleryProps) => (
-  <div
+  <Parallax
     onClick={onOpenModal}
     className="relative w-full aspect-[21/9] bg-zinc-200 dark:bg-zinc-900 rounded-[2rem] overflow-hidden mb-32 border border-zinc-200 dark:border-zinc-800 cursor-zoom-in"
   >
@@ -30,5 +31,5 @@ export const ProjectImageGallery = ({
         className="absolute inset-0 w-full h-full object-cover transition-all duration-1000"
       />
     </AnimatePresence>
-  </div>
+  </Parallax>
 );

@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useSpring, AnimatePresence } from "framer-motion";
 
 const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoverState, setHoverState] = useState<"default" | "link" | "text">("default");
+  const reduceMotion = useReducedMotion();
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -21,7 +22,7 @@ const CustomCursor = () => {
 
   useEffect(() => {
     // Disable on touch devices
-    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+    if (reduceMotion || window.matchMedia("(pointer: coarse)").matches) {
       return; 
     }
 
@@ -60,9 +61,9 @@ const CustomCursor = () => {
       window.removeEventListener("mousemove", moveCursor);
       document.body.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [isVisible, mouseX, mouseY]);
+  }, [isVisible, mouseX, mouseY, reduceMotion]);
 
-  if (!isVisible) return null;
+  if (reduceMotion || !isVisible) return null;
 
   return (
     <>

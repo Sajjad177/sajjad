@@ -14,18 +14,25 @@ export const ProjectHeader = ({ project, onBack }: ProjectHeaderProps) => {
 
   return (
     <>
-      <button
+      <motion.button
         onClick={onBack}
+        whileHover={{ x: -2 }}
+        whileTap={{ scale: 0.98 }}
         className="group flex items-center gap-2 text-zinc-500 hover:text-black dark:hover:text-white transition-colors mb-20"
       >
         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
         <span className="text-[10px] font-bold uppercase tracking-[0.3em]">
           Gallery Archive
         </span>
-      </button>
+      </motion.button>
 
       <header className="mb-20">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="flex gap-4 mb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="flex gap-4 mb-6"
+        >
           <span className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 border border-zinc-300 dark:border-zinc-800 rounded-full dark:text-zinc-400">
             {project.year}
           </span>
@@ -36,6 +43,7 @@ export const ProjectHeader = ({ project, onBack }: ProjectHeaderProps) => {
         <motion.h1
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           className="text-[clamp(40px,10vw,120px)] font-medium tracking-tighter leading-[0.9] text-black dark:text-white mb-10"
         >
           {firstTitleWord} <br />
@@ -43,7 +51,12 @@ export const ProjectHeader = ({ project, onBack }: ProjectHeaderProps) => {
             {remainingTitle.join(" ")}
           </span>
         </motion.h1>
-        <div className="flex flex-wrap gap-8 items-center justify-between border-t border-zinc-200 dark:border-zinc-800 pt-8">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-wrap gap-8 items-center justify-between border-t border-zinc-200 dark:border-zinc-800 pt-8"
+        >
           <div className="flex gap-12">
             <div>
               <p className="text-[10px] uppercase tracking-widest text-zinc-400 mb-1">
@@ -58,11 +71,12 @@ export const ProjectHeader = ({ project, onBack }: ProjectHeaderProps) => {
             rel="noopener noreferrer"
             initial="rest"
             whileHover="hover"
+            whileTap={{ scale: 0.98 }}
             animate="rest"
             className="group inline-flex items-center gap-2 text-sm font-semibold text-[#235347] dark:text-[#4a8b7a] cursor-pointer"
           >
             <span className="relative">
-              Live Preview
+              View Live Site
               <motion.span
                 variants={{ rest: { width: "0%" }, hover: { width: "100%" } }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -74,10 +88,10 @@ export const ProjectHeader = ({ project, onBack }: ProjectHeaderProps) => {
               transition={{ duration: 0.2 }}
               className="flex items-center"
             >
-              <Globe className="w-4 h-4 animate-bounce" />
+              <Globe className="w-4 h-4" />
             </motion.span>
           </motion.a>
-        </div>
+        </motion.div>
       </header>
     </>
   );

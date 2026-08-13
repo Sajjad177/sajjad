@@ -34,7 +34,7 @@ export const ContactForm = ({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-      className="w-full p-12 md:p-16 rounded-[3rem] bg-primary shadow-2xl relative overflow-hidden flex flex-col"
+      className="w-full p-7 sm:p-10 md:p-16 rounded-[2rem] md:rounded-[3rem] bg-primary shadow-2xl relative overflow-hidden flex flex-col"
     >
       <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
@@ -91,7 +91,7 @@ export const ContactForm = ({
           <button
             type="submit"
             disabled={isSending || isSent}
-            className="relative inline-flex items-center gap-6 py-6 px-12 bg-secondary hover:bg-orange-400 text-black font-medium rounded-full overflow-hidden transition-all duration-300 group active:scale-95 disabled:opacity-70 shadow-xl"
+          className="relative inline-flex items-center gap-4 sm:gap-6 py-5 sm:py-6 px-8 sm:px-12 bg-secondary hover:bg-orange-400 text-black font-medium rounded-full overflow-hidden transition-all duration-300 group active:scale-95 disabled:opacity-70 shadow-xl"
           >
             <AnimatePresence mode="wait">
               {isSent ? (
