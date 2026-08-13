@@ -2,6 +2,7 @@
 
 import { Box, CheckCircle2, Lightbulb } from "lucide-react";
 import type { Project } from "@/types";
+import { Reveal } from "@/components/animations";
 
 type ProjectNarrativeProps = {
   project: Project;
@@ -9,6 +10,7 @@ type ProjectNarrativeProps = {
 
 export const ProjectNarrative = ({ project }: ProjectNarrativeProps) => (
   <div className="lg:col-span-7 space-y-32">
+    <Reveal>
     <section>
       <h3 className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-[#235347] dark:text-[#4a8b7a] mb-8">
         <Box className="w-4 h-4" /> 01. Context
@@ -17,6 +19,8 @@ export const ProjectNarrative = ({ project }: ProjectNarrativeProps) => (
         {project.description}
       </p>
     </section>
+    </Reveal>
+    <Reveal delay={0.06}>
     <section className="grid md:grid-cols-2 gap-12">
       <div>
         <h3 className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] text-red-500 mb-6">
@@ -35,6 +39,8 @@ export const ProjectNarrative = ({ project }: ProjectNarrativeProps) => (
         </p>
       </div>
     </section>
+    </Reveal>
+    <Reveal delay={0.06}>
     <section>
       <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-400 mb-8">
         04. Deliverables & Impact
@@ -49,5 +55,6 @@ export const ProjectNarrative = ({ project }: ProjectNarrativeProps) => (
         ))}
       </div>
     </section>
+    </Reveal>
   </div>
 );

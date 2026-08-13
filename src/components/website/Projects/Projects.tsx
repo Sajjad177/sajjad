@@ -1,21 +1,24 @@
 "use client";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { Reveal } from "@/components/animations";
+import type { Project, ProjectRecord } from "@/types";
 
 const Projects = () => {
   const [activeImage, setActiveImage] = useState<string | null>(null);
-  const [projectData, setProjectData] = useState<any[]>([]);
+  const [projectData, setProjectData] = useState<Project[]>([]);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     fetch("/data/projects.json")
       .then((res) => res.json())
-      .then((data) => {
+      .then((data: ProjectRecord) => {
         const projectsArray = Object.entries(data).map(([id, project]) => ({
           id,
-          ...(project as any),
+          ...project,
         }));
         setProjectData(projectsArray.slice(0, 3));
       })
@@ -41,7 +44,8 @@ const Projects = () => {
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <header className="mb-20 md:mb-32 flex flex-col md:flex-row md:items-end justify-between pb-10 md:pb-12 gap-6">
+        <Reveal className="mb-20 md:mb-32">
+        <header className="flex flex-col md:flex-row md:items-end justify-between pb-10 md:pb-12 gap-6">
           <div className="space-y-4">
             <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] text-zinc-400">
               03 — Case Studies
@@ -59,6 +63,7 @@ const Projects = () => {
             Focusing on scalable architectures and high-end digital aesthetics.
           </p>
         </header>
+        </Reveal>
 
         {/* Project List */}
         <div className="relative z-10">
@@ -73,7 +78,8 @@ const Projects = () => {
                 duration: 0.8,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              onMouseEnter={() => setActiveImage(project.image[0])}
+              whileHover={reduceMotion ? undefined : { y: -4 }}
+              onMouseEnter={() => setActiveImage(project.image?.[0] ?? null)}
               onMouseLeave={() => setActiveImage(null)}
               className="group"
             >

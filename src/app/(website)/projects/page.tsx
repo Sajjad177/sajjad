@@ -1,9 +1,11 @@
 "use client";
-import { motion, Variants } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { ProjectPagination } from "@/components/projects";
+import type { Project, ProjectRecord } from "@/types";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -21,20 +23,28 @@ const itemVariants: Variants = {
 };
 
 const ProjectsPage = () => {
-  const [allProjects, setAllProjects] = useState<any[]>([]);
+  const [allProjects, setAllProjects] = useState<Project[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 4;
 
   useEffect(() => {
     fetch("/data/projects.json")
       .then((res) => res.json())
-      .then((data) => {
+      .then((data: ProjectRecord) => {
         const projectsArray = Object.entries(data).map(([id, project]) => ({
           id,
-          ...(project as any),
+          ...project,
         }));
         setAllProjects(projectsArray);
       })
       .catch((err) => console.error("Error fetching projects:", err));
   }, []);
+
+  const pageCount = Math.ceil(allProjects.length / projectsPerPage);
+  const pageProjects = allProjects.slice(
+    (currentPage - 1) * projectsPerPage,
+    currentPage * projectsPerPage,
+  );
 
   return (
     <main className="bg-[#f7efe2] dark:bg-[#1a1a1a] min-h-screen transition-colors duration-500 selection:bg-[#235347] selection:text-white pb-32">
@@ -81,13 +91,16 @@ const ProjectsPage = () => {
 
         {/* Projects Grid */}
         {allProjects.length > 0 && (
+          <AnimatePresence mode="wait">
           <motion.div
+            key={currentPage}
             variants={containerVariants}
             initial="hidden"
             animate="show"
+            exit={{ opacity: 0, y: -8 }}
             className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 md:gap-y-32"
           >
-            {allProjects.map((project, index) => (
+            {pageProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 variants={itemVariants}
@@ -96,7 +109,7 @@ const ProjectsPage = () => {
                 {/* Image Container */}
                 <Link href={`/project/${project.id}`} className="relative block overflow-hidden rounded-[2rem] aspect-[4/3] bg-zinc-200 dark:bg-zinc-800 mb-8 border border-zinc-200 dark:border-zinc-800">
                   <Image
-                    src={project.image[0]}
+                    src={project.image?.[0] ?? ""}
                     alt={project.title}
                     fill
                     sizes="(min-width: 768px) 50vw, 100vw"
@@ -132,6 +145,24 @@ const ProjectsPage = () => {
                     <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base leading-relaxed line-clamp-2 max-w-md">
                       {project.description}
                     </p>
+                    <div className="mt-6 flex items-center gap-4 text-xs font-semibold">
+                      <Link
+                        href={`/project/${project.id}`}
+                        className="group/action inline-flex items-center gap-1 text-[#235347] transition-transform hover:-translate-y-0.5 dark:text-[#4a8b7a]"
+                      >
+                        View Details <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover/action:translate-x-0.5 group-hover/action:-translate-y-0.5" />
+                      </Link>
+                      {project.liveLink && (
+                        <a
+                          href={project.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group/action inline-flex items-center gap-1 text-zinc-500 transition-transform hover:-translate-y-0.5 hover:text-foreground dark:text-zinc-400"
+                        >
+                          View Live Site <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover/action:translate-x-0.5 group-hover/action:-translate-y-0.5" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                   
                   {/* Decorative Index */}
@@ -142,7 +173,13 @@ const ProjectsPage = () => {
               </motion.div>
             ))}
           </motion.div>
+          </AnimatePresence>
         )}
+        <ProjectPagination
+          currentPage={currentPage}
+          pageCount={pageCount}
+          onChange={setCurrentPage}
+        />
       </div>
     </main>
   );
