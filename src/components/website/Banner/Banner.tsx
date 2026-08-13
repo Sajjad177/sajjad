@@ -29,7 +29,7 @@ const Banner = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           style={{ fontFamily: "'Clash Display', sans-serif" }}
-          className="text-[12vw] sm:text-[9vw] md:text-[6.5rem] lg:text-[8rem] whitespace-nowrap font-black leading-none tracking-tighter text-foreground z-10 text-center"
+          className="max-w-full text-[clamp(2.5rem,12vw,4.5rem)] sm:text-[9vw] md:text-[6.5rem] lg:text-[8rem] sm:whitespace-nowrap font-black leading-[0.9] sm:leading-none tracking-tighter text-foreground z-10 text-center"
         >
           {personalInfo.title}
         </motion.h1>
@@ -45,19 +45,19 @@ const Banner = () => {
 
         {/* Image */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="absolute top-[55%] sm:top-[52%] md:top-[48%] w-[200px] sm:w-[260px] md:w-[450px] z-20"
+          initial={{ opacity: 0, y: 20, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          className="relative mt-5 w-[min(58vw,230px)] sm:absolute sm:mt-0 sm:top-[52%] sm:w-[265px] md:top-[48%] md:w-[460px] z-20"
         >
           <Image
             src="/images/sajjad.png"
             alt="Portrait"
             width={450}
             height={450}
-            className="w-full h-auto"
+            className="w-full h-auto drop-shadow-[0_14px_18px_rgba(28,28,28,0.12)] dark:brightness-105 dark:contrast-105 dark:drop-shadow-[0_16px_22px_rgba(0,0,0,0.42)]"
           />
-          <div className="absolute bottom-0 left-0 w-full h-20 md:h-32 bg-gradient-to-t from-background to-transparent z-30 pointer-events-none" />
+          <div className="absolute inset-x-[-4%] bottom-[-2%] h-28 bg-gradient-to-t from-background via-background/80 to-transparent sm:h-32 md:h-44 z-30 pointer-events-none" />
         </motion.div>
 
         {/* Bottom Stroke Text */}
@@ -72,7 +72,7 @@ const Banner = () => {
       </div>
 
       {/* Bottom Info */}
-      <div className="w-full max-w-7xl flex flex-col md:flex-row justify-between items-center md:items-end mt-[180px] sm:mt-[220px] md:mt-[380px] z-30 px-6 gap-4">
+      <div className="w-full max-w-7xl flex flex-col md:flex-row justify-between items-center md:items-end mt-10 sm:mt-[220px] md:mt-[380px] z-30 px-6 gap-5">
         <motion.p
           {...fadeInUp}
           className="text-zinc-500 dark:text-zinc-400 font-medium text-base md:text-lg text-center md:text-left"
@@ -84,7 +84,7 @@ const Banner = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.8 }}
-          className="flex flex-col items-center md:items-end gap-1 md:gap-2 text-sm md:text-lg font-medium tracking-wide text-zinc-600 dark:text-zinc-400 text-center md:text-right"
+          className="flex flex-col items-center md:items-end gap-2 text-sm md:text-lg font-medium tracking-wide text-zinc-600 dark:text-zinc-400 text-center md:text-right"
         >
           <p>Email: {personalInfo.email}</p>
           <p>Phone: {personalInfo.phone}</p>
